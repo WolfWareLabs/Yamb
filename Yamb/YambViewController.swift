@@ -9,9 +9,56 @@ import UIKit
 
 class YambViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, DiceSelectionDelegate {
 
-    @IBOutlet var totalScoreLabel: UILabel!
-    @IBOutlet var yambCollectionView: UICollectionView!
-    @IBOutlet var topStack: UIStackView!
+    lazy var totalScoreLabel: UILabel = {
+        var label = UILabel()
+        label.text = "Total: "
+        return label
+    }()
+    lazy var yambCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumInteritemSpacing = 3
+        flowLayout.minimumLineSpacing = 3
+        flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width/CGFloat(columns.count)) - 3, height: 45)
+        flowLayout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        
+        var yambCV = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        yambCV.delegate = self
+        yambCV.dataSource = self
+        
+        yambCV.register(YambCell.self, forCellWithReuseIdentifier: "numberCell")
+        yambCV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        return yambCV
+    }()
+    
+    lazy var contentStack: UIStackView = {
+       var stackView = UIStackView(arrangedSubviews: [topStack, yambCollectionView])
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        return stackView
+    }()
+    
+    lazy var topStack: UIStackView = {
+        var stackView = UIStackView(arrangedSubviews: [button, UIView(), totalScoreLabel])
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        //stackView.insertArrangedSubview(<#T##view: UIView##UIView#>, at: <#T##Int#>)
+        return stackView
+    }()
+    
+    lazy var button: UIButton = {
+       var b = UIButton()
+        b.setTitle("New Game", for: .normal)
+        b.backgroundColor = .systemBlue
+        b.snp.makeConstraints { make in
+            make.width.equalTo(150)
+            make.height.equalTo(50)
+        }
+        return b
+    }()
     
     let columns: [Column] = [.rowNames, .down, .up, .free, .midOut, .outMid, .announce, .disannounce]
     
@@ -24,16 +71,13 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        yambCollectionView.register(YambCell.self, forCellWithReuseIdentifier: "numberCell")
-
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumInteritemSpacing = 3
-        flowLayout.minimumLineSpacing = 3
-        flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width/CGFloat(columns.count)) - 3, height: 45)
-        flowLayout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
-        yambCollectionView.collectionViewLayout = flowLayout;
-        yambCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        
+        view.addSubview(contentStack)
+        contentStack.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -108,7 +152,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         totalScoreLabel.text = "Total: \(dataSource.totalScore)"
     }
     
-    @IBAction func onNewGame(_ sender: Any) {
+    @objc func onNewGame(_ sender: Any) {
         let alert = UIAlertController(title: "Are you sure you want to abandon the current game and start a new one?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
