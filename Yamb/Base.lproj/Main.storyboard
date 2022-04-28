@@ -270,10 +270,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yq3-Mo-XtY">
-                                        <rect key="frame" x="33" y="428" width="214" height="70"/>
+                                        <rect key="frame" x="32.5" y="428" width="215" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PY8-3e-KvV">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="70"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="7bm-Mi-nPh"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="eed-5W-z2u"/>
@@ -287,7 +287,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Occ-hi-Rfa">
-                                                <rect key="frame" x="160" y="0.0" width="54" height="70"/>
+                                                <rect key="frame" x="65" y="0.0" width="150" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="Kck-U4-0Fb"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="mc6-c0-KFV"/>

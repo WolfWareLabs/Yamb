@@ -14,6 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        let story = UIStoryboard(name: "Main", bundle:nil)
+//        let vc = story.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//
+//        UIApplication.shared.windows.first?.rootViewController = MinMaxDiceSelectionViewController()
+//        UIApplication.shared.windows.first?.makeKeyAndVisible()
+        
+//        let window = UIWindow()
+//        window.rootViewController = MinMaxDiceSelectionViewController()
+//        window.makeKeyAndVisible()
+        
         return true
     }
 
