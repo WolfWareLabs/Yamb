@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -15,7 +15,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="YambViewController" customModule="Yamb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -30,7 +30,7 @@
             <objects>
                 <viewController storyboardIdentifier="diceSelection" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sGd-o2-6Kc" customClass="MinMaxDiceSelectionViewController" customModule="Yamb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uDg-m1-5wb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="oUZ-lq-7cb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -45,20 +45,20 @@
             <objects>
                 <viewController storyboardIdentifier="topBottomSelection" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6P9-ZN-BAX" customClass="TopBottomDiceSelectionViewController" customModule="Yamb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Fs-PQ-uUv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4Y4-ve-451">
-                                <rect key="frame" x="20" y="50" width="280" height="498"/>
+                                <rect key="frame" x="20" y="94" width="374" height="748"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxR-Ld-1oL">
-                                        <rect key="frame" x="140" y="0.0" width="0.0" height="0.0"/>
+                                        <rect key="frame" x="187" y="0.0" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dSu-ml-HLx">
-                                        <rect key="frame" x="0.0" y="10" width="280" height="377.5"/>
+                                        <rect key="frame" x="0.0" y="10" width="374" height="627.66666666666663"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EaI-bS-0pf">
                                             <size key="itemSize" width="128" height="128"/>
@@ -78,16 +78,16 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JfG-Tr-DkG">
-                                        <rect key="frame" x="78.5" y="397.5" width="123.5" height="20.5"/>
+                                        <rect key="frame" x="125.33333333333334" y="647.66666666666663" width="123.33333333333334" height="20.333333333333371"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add star" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxe-ZL-y3W">
-                                                <rect key="frame" x="0.0" y="0.0" width="64.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="64.333333333333329" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" title="has star" translatesAutoresizingMaskIntoConstraints="NO" id="zYJ-wS-XTc">
-                                                <rect key="frame" x="74.5" y="0.0" width="51" height="20.5"/>
+                                                <rect key="frame" x="74.333333333333314" y="0.0" width="51" height="20.333333333333332"/>
                                                 <connections>
                                                     <action selector="onAddStarValueChanged:" destination="og3-Ii-H2U" eventType="valueChanged" id="Xt1-LY-X2Y"/>
                                                     <action selector="onAddStarValueChanged:" destination="6P9-ZN-BAX" eventType="valueChanged" id="ful-Vx-REd"/>
@@ -96,7 +96,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yq3-Mo-XtY">
-                                        <rect key="frame" x="33" y="428" width="214" height="70"/>
+                                        <rect key="frame" x="32" y="678" width="310" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PY8-3e-KvV">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="70"/>
@@ -113,7 +113,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Occ-hi-Rfa">
-                                                <rect key="frame" x="160" y="0.0" width="54" height="70"/>
+                                                <rect key="frame" x="160" y="0.0" width="150" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="Kck-U4-0Fb"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="mc6-c0-KFV"/>
