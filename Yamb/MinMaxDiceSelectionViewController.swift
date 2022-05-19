@@ -9,14 +9,13 @@ import UIKit
 import SnapKit
 
 extension UIStackView {
-    convenience init(arrangedSubviews: [UIView], spacing: CGFloat, axis: NSLayoutConstraint.Axis, distribution: UIStackView.Distribution, alignment: UIStackView.Alignment, layoutInsets: UIEdgeInsets, backgroundColor: UIColor){
+    convenience init(arrangedSubviews: [UIView], spacing: CGFloat, axis: NSLayoutConstraint.Axis, distribution: UIStackView.Distribution, alignment: UIStackView.Alignment, layoutInsets: UIEdgeInsets){
         self.init(arrangedSubviews: arrangedSubviews)
         self.spacing = spacing
         self.axis = axis
         self.distribution = distribution
         self.alignment = alignment
         //self.layoutInsets = layoutInsets
-        self.backgroundColor = backgroundColor
     }
 }
 
@@ -66,8 +65,6 @@ protocol DiceSelectionDelegate: AnyObject {
 
 class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    //var rectangle: CGRect = CGRect(x: .zero, y: .zero, width: 100, height: 100)
-    
     lazy var selectedCollection: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 10
@@ -77,8 +74,8 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
         var collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.register(DiceCell.self, forCellWithReuseIdentifier: "selectionCell")
         collectionView.snp.makeConstraints { make in
-            make.height.equalTo(200)
-            make.width.equalTo(300)
+            make.height.equalTo(300)
+            make.width.equalTo(400)
         }
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -93,7 +90,6 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
         var button = UIButton()
         //button.isHidden = !shouldShowClear
         button.setTitle("Clear", for: .normal)
-//        button.backgroundColor = .systemRed
         button.setTitleColor(.black, for: .normal)
         button.snp.makeConstraints { make in
             make.height.equalTo(50)
@@ -107,7 +103,6 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
         var button = UIButton()
         button.setTitle("Done", for: .normal)
         button.setTitleColor(.black, for: .normal)
-//        button.backgroundColor = .systemRed
         button.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(100)
@@ -172,13 +167,13 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
         return btn
     }()
     
-    lazy var btn123StackView = UIStackView(arrangedSubviews: [UIView(), button1,button2,button3, UIView()], spacing: 10, axis: .horizontal, distribution: .fill, alignment: .center, layoutInsets: .zero, backgroundColor: .clear)
+    lazy var btn123StackView = UIStackView(arrangedSubviews: [UIView(), button1,button2,button3, UIView()], spacing: 10, axis: .horizontal, distribution: .fill, alignment: .center, layoutInsets: .zero)
     
-    lazy var btn456StackView = UIStackView(arrangedSubviews: [button4,button5,button6], spacing: 10, axis: .horizontal, distribution: .fill, alignment: .top, layoutInsets: .zero, backgroundColor: .clear)
+    lazy var btn456StackView = UIStackView(arrangedSubviews: [button4,button5,button6], spacing: 10, axis: .horizontal, distribution: .fill, alignment: .top, layoutInsets: .zero)
     
-    lazy var ClearDoneStackView = UIStackView(arrangedSubviews: [clearButton, doneButton], spacing: 20, axis: .horizontal, distribution: .fillEqually, alignment: .center, layoutInsets: .zero, backgroundColor: .clear)
+    lazy var ClearDoneStackView = UIStackView(arrangedSubviews: [clearButton, doneButton], spacing: 20, axis: .horizontal, distribution: .fillEqually, alignment: .center, layoutInsets: .zero)
     
-    lazy var mainStackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, currentSelection, selectedCollection, selectTheDiceThatYouRolled,  btn123StackView, btn456StackView, ClearDoneStackView, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center, layoutInsets: .zero, backgroundColor: .clear)
+    lazy var mainStackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, currentSelection, selectedCollection, selectTheDiceThatYouRolled,  btn123StackView, btn456StackView, ClearDoneStackView, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center, layoutInsets: .zero)
     
 
     var diceRolls: [DiceRoll] = []
@@ -189,7 +184,6 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.selectedCollection.backgroundColor = .systemBlue
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(50)
@@ -204,11 +198,6 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = selectedCollection.dequeueReusableCell(withReuseIdentifier: "selectionCell", for: indexPath) as? DiceCell ?? DiceCell(frame: .zero)
-        cell.snp.makeConstraints { make in
-            make.height.equalTo(100)
-            make.width.equalTo(100)
-        }
-        cell.backgroundColor = .systemRed
         cell.setup(diceRoll: diceRolls[indexPath.item])
         return cell
     }
@@ -240,9 +229,9 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
     
     @objc func onClear(_ sender: Any) {
         delegate?.didClear(indexPath: field?.indexPath)
-//        dismiss(animated: true) {
-//            self.delegate?.didDismiss()
-//        }
+        dismiss(animated: true) {
+            self.delegate?.didDismiss()
+        }
     }
     
 }
