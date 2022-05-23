@@ -24,8 +24,6 @@ class CustomButton: UIButton {
         let imageView = UIImageView()
         return imageView
     }()
-    
-
     var viewModel: CustomButtonViewModel
 
     init(with viewModel: CustomButtonViewModel){
@@ -41,21 +39,16 @@ class CustomButton: UIButton {
             make.edges.equalToSuperview()
         }
         buttonImage.image = UIImage(named: viewModel.buttonImage)
-        
     }
-
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 
 struct CustomButtonViewModel {
     let buttonImage: String
 }
-
-
 
 protocol DiceSelectionDelegate: AnyObject {
     func didSelect(_ diceRolls: [DiceRoll], indexPath: IndexPath?, hasStar: Bool)
@@ -211,7 +204,6 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
         guard let diceRoll = DiceRoll(rawValue: sender.tag), diceRolls.count < 6 else { return }
         diceRolls.append(diceRoll)
         selectedCollection.reloadData()
-        print("Click")
     }
     
     @objc func onDone(_ sender: Any) {
@@ -233,7 +225,6 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
             self.delegate?.didDismiss()
         }
     }
-    
 }
 
 class DiceCell: UICollectionViewCell {
