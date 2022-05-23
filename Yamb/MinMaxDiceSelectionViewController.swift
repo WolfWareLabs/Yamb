@@ -83,7 +83,7 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
         var button = UIButton()
         //button.isHidden = !shouldShowClear
         button.setTitle("Clear", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.label, for: .normal)
         button.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(100)
@@ -95,7 +95,7 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
     lazy var doneButton: UIButton = {
         var button = UIButton()
         button.setTitle("Done", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.label, for: .normal)
         button.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(100)
