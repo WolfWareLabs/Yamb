@@ -19,6 +19,7 @@
 		C7E4EEC426EBD38600890C42 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C7E4EEC326EBD38600890C42 /* SnapKit */; };
 		C7FEC90F25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FEC90E25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift */; };
 		C7FEC91325A733A70021BBEE /* YambDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FEC91225A733A70021BBEE /* YambDataSource.swift */; };
+		DCDE16BE280EC10100D668AF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE16BD280EC10100D668AF /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		C798F6E525A4BC8800511286 /* CellEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellEnums.swift; sourceTree = "<group>"; };
 		C7FEC90E25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMaxDiceSelectionViewController.swift; sourceTree = "<group>"; };
 		C7FEC91225A733A70021BBEE /* YambDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YambDataSource.swift; sourceTree = "<group>"; };
+		DCDE16BD280EC10100D668AF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				C798F6D5259E4FB400511286 /* Assets.xcassets */,
 				C798F6D7259E4FB400511286 /* LaunchScreen.storyboard */,
 				C798F6DA259E4FB400511286 /* Info.plist */,
+				DCDE16BD280EC10100D668AF /* LoginViewController.swift */,
 			);
 			path = Yamb;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCDE16BE280EC10100D668AF /* LoginViewController.swift in Sources */,
 				C798F6D1259E4FB100511286 /* YambViewController.swift in Sources */,
 				C798F6CD259E4FB100511286 /* AppDelegate.swift in Sources */,
 				C7FEC90F25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift in Sources */,

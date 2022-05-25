@@ -1,0 +1,6 @@
+*.DS_Store
+*.xcbkptlist
+*.xcuserstate
+xcuserdata
+xcshareddata
+*.plist
