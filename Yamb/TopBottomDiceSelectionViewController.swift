@@ -6,31 +6,112 @@
 //
 
 import UIKit
+import SnapKit
 
 class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var clearButton: UIButton!
-    @IBOutlet var addStarSwitch: UISwitch!
+    
+    lazy var titleLabel: UILabel = {
+        var title = UILabel()
+        title.text = field?.row?.longTitle
+        title.font = .boldSystemFont(ofSize: 25)
+        title.textAlignment = .center
+        return title
+    }()
+    
+    lazy var collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        var collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.register(TopBottomCollectionCell.self, forCellWithReuseIdentifier: "topBottomCell")
+        flowLayout.minimumInteritemSpacing = 10
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width - 40, height: 60)
+        collectionView.snp.makeConstraints { make in
+            make.height.equalTo(450)
+            make.width.equalTo(400)
+        }
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        return collectionView
+    }()
+    
+    lazy var clearButton: UIButton = {
+        var button = UIButton()
+        button.setTitle("Clear", for: .normal)
+        button.setTitleColor(.label, for: .normal)
+        //clearButton.isHidden = !shouldShowClear
+        button.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalTo(70)
+        }
+        button.titleLabel?.textAlignment = .center
+        button.titleLabel?.font = .boldSystemFont(ofSize: 25)
+        button.backgroundColor = .systemGray6
+        button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(onCancel), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var doneButton: UIButton = {
+        var button = UIButton()
+        button.setTitle("Done", for: .normal)
+        button.setTitleColor(.label, for: .normal)
+        button.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalTo(70)
+        }
+        button.titleLabel?.textAlignment = .center
+        button.titleLabel?.font = .boldSystemFont(ofSize: 25)
+        button.backgroundColor = .systemGray6
+        button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(onDone), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var addStarSwitch: UISwitch = {
+       var addStarSwitch = UISwitch()
+        addStarSwitch.addTarget(self, action: #selector(onAddStarValueChanged), for: .valueChanged)
+        return addStarSwitch
+    }()
+    
+    lazy var addStarLabel: UILabel = {
+        var label = UILabel()
+        label.text = "Add star"
+        return label
+    }()
+    
+    lazy var addStarStackView = UIStackView(arrangedSubviews: [addStarLabel, addStarSwitch], spacing: 10, axis: .horizontal, distribution: .fill, alignment: .center, layoutInsets: .zero)
+    
+    lazy var addStarView: UIView = {
+       var view = UIView()
+        view.addSubview(addStarStackView)
+        addStarStackView.snp.makeConstraints{ make in
+            make.centerX.equalToSuperview()
+        }
+        return view
+    }()
+    
+    lazy var clearDoneStackVIew = UIStackView(arrangedSubviews: [clearButton, doneButton], spacing: 20, axis: .horizontal, distribution: .fillEqually, alignment: .center, layoutInsets: .zero)
+    
+    lazy var toggleButtonStackView = UIStackView(arrangedSubviews: [addStarView, clearDoneStackVIew], spacing: 20, axis: .vertical, distribution: .fill, alignment: .fill, layoutInsets: .zero)
+    
+    lazy var titleCVStackView = UIStackView(arrangedSubviews: [titleLabel, collectionView], spacing: 10, axis: .vertical, distribution: .fill, alignment: .fill, layoutInsets: .zero)
+    
+    lazy var mainStackView = UIStackView(arrangedSubviews: [titleCVStackView, toggleButtonStackView], spacing: 170, axis: .vertical, distribution: .fill, alignment: .fill, layoutInsets: .zero)
+    
+//    lazy var mainStackView = UIStackView(arrangedSubviews: [titleLabel, collectionView, addStarView, clearDoneStackVIew], spacing: 5, axis: .vertical, distribution: .fill, alignment: .fill, layoutInsets: .zero)
     
     var field: Field?
     weak var delegate: DiceSelectionDelegate?
     var shouldShowClear = false
     
     override func viewDidLoad() {
-        
-        collectionView.register(TopBottomCollectionCell.self, forCellWithReuseIdentifier: "topBottomCell")
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumInteritemSpacing = 10
-        flowLayout.minimumLineSpacing = 10
-        flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width - 40, height: 60)
-        collectionView.collectionViewLayout = flowLayout
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        titleLabel.text = field?.row?.longTitle
-        clearButton.isHidden = !shouldShowClear
+        super.viewDidLoad()
+        view.addSubview(mainStackView)
+        mainStackView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(50)
+            make.bottom.left.right.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -62,15 +143,15 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
         }
     }
     
-    @IBAction func onDone(_ sender: Any) {
+    @objc func onDone(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func onAddStarValueChanged(_ sender: UISwitch) {
+    @objc func onAddStarValueChanged(_ sender: UISwitch) {
         field?.hasStar = sender.isSelected
     }
     
-    @IBAction func onCancel(_ sender: Any) {
+    @objc func onCancel(_ sender: Any) {
         delegate?.didClear(indexPath: field?.indexPath)
         dismiss(animated: true) {
             self.delegate?.didDismiss()
