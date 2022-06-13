@@ -39,12 +39,10 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
         var button = UIButton()
         button.setTitle("Clear", for: .normal)
         button.setTitleColor(.label, for: .normal)
-        //clearButton.isHidden = !shouldShowClear
         button.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(70)
         }
-        button.titleLabel?.textAlignment = .center
         button.titleLabel?.font = .boldSystemFont(ofSize: 25)
         button.backgroundColor = .systemGray6
         button.layer.cornerRadius = 5
@@ -60,7 +58,6 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
             make.height.equalTo(50)
             make.width.equalTo(70)
         }
-        button.titleLabel?.textAlignment = .center
         button.titleLabel?.font = .boldSystemFont(ofSize: 25)
         button.backgroundColor = .systemGray6
         button.layer.cornerRadius = 5
@@ -98,8 +95,6 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
     lazy var titleCVStackView = UIStackView(arrangedSubviews: [titleLabel, collectionView], spacing: 10, axis: .vertical, distribution: .fill, alignment: .fill, layoutInsets: .zero)
     
     lazy var mainStackView = UIStackView(arrangedSubviews: [titleCVStackView, toggleButtonStackView], spacing: 170, axis: .vertical, distribution: .fill, alignment: .fill, layoutInsets: .zero)
-    
-//    lazy var mainStackView = UIStackView(arrangedSubviews: [titleLabel, collectionView, addStarView, clearDoneStackVIew], spacing: 5, axis: .vertical, distribution: .fill, alignment: .fill, layoutInsets: .zero)
     
     var field: Field?
     weak var delegate: DiceSelectionDelegate?
