@@ -107,6 +107,7 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
             make.top.equalTo(view.safeAreaLayoutGuide).inset(50)
             make.bottom.left.right.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
+        view.backgroundColor = .white
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -120,7 +121,8 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let row = field?.row, let data = row.section.nameAndRolls(row: row)[indexPath.section]?[indexPath.row] {
             delegate?.didSelect(data.1, indexPath: field?.indexPath, hasStar: addStarSwitch.isOn)
-            dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
+            self.delegate?.didDismiss()
         }
     }
     
@@ -139,7 +141,8 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
     }
     
     @objc func onDone(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        self.delegate?.didDismiss()
     }
     
     @objc func onAddStarValueChanged(_ sender: UISwitch) {
@@ -148,9 +151,11 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
     
     @objc func onCancel(_ sender: Any) {
         delegate?.didClear(indexPath: field?.indexPath)
-        dismiss(animated: true) {
-            self.delegate?.didDismiss()
-        }
+//        dismiss(animated: true) {
+//            self.delegate?.didDismiss()
+//        }
+        self.navigationController?.popViewController(animated: true)
+        self.delegate?.didDismiss()
     }
 }
 

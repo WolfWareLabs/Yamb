@@ -183,6 +183,7 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
             make.bottom.left.right.equalTo(view.safeAreaLayoutGuide).inset(20)
             
         }
+        view.backgroundColor = .white
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -210,20 +211,25 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
         if field?.row?.fiveDiceRequired == true && diceRolls.count < 5 {
             let alert = UIAlertController(title: nil, message: "You must select at least five dice", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+//            present(alert, animated: true, completion: nil)
+            self.navigationController?.pushViewController(self, animated: true)
             return
         }
         delegate?.didSelect(diceRolls, indexPath: field?.indexPath, hasStar: false)
-        dismiss(animated: true) {
-            self.delegate?.didDismiss()
-        }
+//        dismiss(animated: true) {
+//            self.delegate?.didDismiss()
+//        }
+        self.navigationController?.popViewController(animated: true)
+        self.delegate?.didDismiss()
     }
     
     @objc func onClear(_ sender: Any) {
         delegate?.didClear(indexPath: field?.indexPath)
-        dismiss(animated: true) {
-            self.delegate?.didDismiss()
-        }
+//        dismiss(animated: true) {
+//            self.delegate?.didDismiss()
+//        }
+        self.navigationController?.popViewController(animated: true)
+        self.delegate?.didDismiss()
     }
 }
 
