@@ -35,32 +35,16 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
         return collectionView
     }()
     
-    lazy var clearButton: UIButton = {
-        var button = UIButton()
+    lazy var clearButton: ClearDoneButton = {
+        var button = ClearDoneButton()
         button.setTitle("Clear", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(70)
-        }
-        button.titleLabel?.font = .boldSystemFont(ofSize: 25)
-        button.backgroundColor = .systemGray6
-        button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(onCancel), for: .touchUpInside)
         return button
     }()
     
-    lazy var doneButton: UIButton = {
-        var button = UIButton()
+    lazy var doneButton: ClearDoneButton = {
+        var button = ClearDoneButton()
         button.setTitle("Done", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(70)
-        }
-        button.titleLabel?.font = .boldSystemFont(ofSize: 25)
-        button.backgroundColor = .systemGray6
-        button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(onDone), for: .touchUpInside)
         return button
     }()
@@ -77,7 +61,7 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
         return label
     }()
     
-    lazy var addStarStackView = UIStackView(arrangedSubviews: [addStarLabel, addStarSwitch], spacing: 10, axis: .horizontal, distribution: .fill, alignment: .center, layoutInsets: .zero)
+    lazy var addStarStackView = UIStackView(arrangedSubviews: [addStarLabel, addStarSwitch], spacing: 10, axis: .horizontal, distribution: .fill, alignment: .center)
     
     lazy var addStarView: UIView = {
        var view = UIView()
@@ -88,13 +72,13 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
         return view
     }()
     
-    lazy var clearDoneStackVIew = UIStackView(arrangedSubviews: [clearButton, doneButton], spacing: 20, axis: .horizontal, distribution: .fillEqually, alignment: .center, layoutInsets: .zero)
+    lazy var clearDoneStackVIew = UIStackView(arrangedSubviews: [clearButton, doneButton], spacing: 20, axis: .horizontal, distribution: .fillEqually, alignment: .center)
     
-    lazy var toggleButtonStackView = UIStackView(arrangedSubviews: [addStarView, clearDoneStackVIew], spacing: 20, axis: .vertical, distribution: .fill, alignment: .fill, layoutInsets: .zero)
+    lazy var toggleButtonStackView = UIStackView(arrangedSubviews: [addStarView, clearDoneStackVIew], spacing: 20, axis: .vertical, distribution: .fill, alignment: .fill)
     
-    lazy var titleCVStackView = UIStackView(arrangedSubviews: [titleLabel, collectionView], spacing: 10, axis: .vertical, distribution: .fill, alignment: .fill, layoutInsets: .zero)
+    lazy var titleCVStackView = UIStackView(arrangedSubviews: [titleLabel, collectionView], spacing: 10, axis: .vertical, distribution: .fill, alignment: .fill)
     
-    lazy var mainStackView = UIStackView(arrangedSubviews: [titleCVStackView, toggleButtonStackView], spacing: 170, axis: .vertical, distribution: .fill, alignment: .fill, layoutInsets: .zero)
+    lazy var mainStackView = UIStackView(arrangedSubviews: [titleCVStackView, toggleButtonStackView], spacing: 170, axis: .vertical, distribution: .fill, alignment: .fill)
     
     var field: Field?
     weak var delegate: DiceSelectionDelegate?
@@ -121,8 +105,9 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let row = field?.row, let data = row.section.nameAndRolls(row: row)[indexPath.section]?[indexPath.row] {
             delegate?.didSelect(data.1, indexPath: field?.indexPath, hasStar: addStarSwitch.isOn)
-            self.navigationController?.popViewController(animated: true)
-            self.delegate?.didDismiss()
+            dismiss(animated: true) {
+                self.delegate?.didDismiss()
+            }
         }
     }
     
@@ -141,8 +126,9 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
     }
     
     @objc func onDone(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-        self.delegate?.didDismiss()
+        dismiss(animated: true) {
+            self.delegate?.didDismiss()
+        }
     }
     
     @objc func onAddStarValueChanged(_ sender: UISwitch) {
@@ -151,11 +137,9 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
     
     @objc func onCancel(_ sender: Any) {
         delegate?.didClear(indexPath: field?.indexPath)
-//        dismiss(animated: true) {
-//            self.delegate?.didDismiss()
-//        }
-        self.navigationController?.popViewController(animated: true)
-        self.delegate?.didDismiss()
+        dismiss(animated: true) {
+            self.delegate?.didDismiss()
+        }
     }
 }
 

@@ -45,7 +45,6 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         stackView.spacing = 10
         stackView.distribution = .fill
         stackView.alignment = .fill
-        //stackView.insertArrangedSubview(<#T##view: UIView##UIView#>, at: <#T##Int#>)
         return stackView
     }()
     
@@ -104,19 +103,17 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         case .Yamb:
             if !field.isEnabled { return }
             if field.row?.section == .middle || field.row == .full {
-                let diceSelection = MinMaxDiceSelectionViewController()
-                diceSelection.field = field
-                diceSelection.delegate = self
-                diceSelection.shouldShowClear = field == dataSource.lastPlayedField
-                self.navigationController?.pushViewController(diceSelection, animated: true)
+                let minMaxVC = MinMaxDiceSelectionViewController()
+                minMaxVC.field = field
+                minMaxVC.delegate = self
+                minMaxVC.shouldShowClear = field == dataSource.lastPlayedField
+                present(minMaxVC, animated: true)
             } else {
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                guard let diceSelection = storyboard.instantiateViewController(withIdentifier: "topBottomSelection") as? TopBottomDiceSelectionViewController else { return }
-                let diceSelection = TopBottomDiceSelectionViewController()
-                diceSelection.field = field
-                diceSelection.delegate = self
-                diceSelection.shouldShowClear = field == dataSource.lastPlayedField
-                self.navigationController?.pushViewController(diceSelection, animated: true)
+                let topBottomVC = TopBottomDiceSelectionViewController()
+                topBottomVC.field = field
+                topBottomVC.delegate = self
+                topBottomVC.shouldShowClear = field == dataSource.lastPlayedField
+                present(topBottomVC, animated: true)
             }
         case .Result:
             var message = ""
@@ -126,19 +123,16 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//            present(alert, animated: true, completion: nil)
-            self.navigationController?.pushViewController(self, animated: true)
+            present(self, animated: true)
         case .ColumnHeader:
             let alert = UIAlertController(title: nil, message: field.column.description, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//            present(alert, animated: true, completion: nil)
-            self.navigationController?.pushViewController(self, animated: true)
+            present(self, animated: true)
         case .RowName:
             guard let description = field.row?.description else { return }
             let alert = UIAlertController(title: nil, message: description, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//            present(alert, animated: true, completion: nil)
-            self.navigationController?.pushViewController(self, animated: true)
+            present(self, animated: true)
         }
     }
     
@@ -166,8 +160,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//        self.present(alert, animated: true, completion: nil)
-        self.navigationController?.pushViewController(self, animated: true)
+        present(self, animated: true)
     }
     
     func didDismiss() {
@@ -178,8 +171,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
                 self.yambCollectionView.reloadData()
                 self.totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
             }))
-//            present(alert, animated: true, completion: nil)
-            self.navigationController?.pushViewController(self, animated: true)
+            present(self, animated: true)
         }
     }
 }
