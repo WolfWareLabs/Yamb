@@ -11,7 +11,6 @@
 		C798F6CD259E4FB100511286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C798F6CC259E4FB100511286 /* AppDelegate.swift */; };
 		C798F6CF259E4FB100511286 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C798F6CE259E4FB100511286 /* SceneDelegate.swift */; };
 		C798F6D1259E4FB100511286 /* YambViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C798F6D0259E4FB100511286 /* YambViewController.swift */; };
-		C798F6D4259E4FB100511286 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C798F6D2259E4FB100511286 /* Main.storyboard */; };
 		C798F6D6259E4FB400511286 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C798F6D5259E4FB400511286 /* Assets.xcassets */; };
 		C798F6D9259E4FB400511286 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C798F6D7259E4FB400511286 /* LaunchScreen.storyboard */; };
 		C798F6E325A4B94200511286 /* YambCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C798F6E225A4B94200511286 /* YambCell.swift */; };
@@ -19,6 +18,9 @@
 		C7E4EEC426EBD38600890C42 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C7E4EEC326EBD38600890C42 /* SnapKit */; };
 		C7FEC90F25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FEC90E25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift */; };
 		C7FEC91325A733A70021BBEE /* YambDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FEC91225A733A70021BBEE /* YambDataSource.swift */; };
+		DC89B5DF2869F1DD0000E096 /* CustomDiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5DE2869F1DD0000E096 /* CustomDiceButton.swift */; };
+		DC89B5E22869F2890000E096 /* Extensions+UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5E12869F2890000E096 /* Extensions+UIStackView.swift */; };
+		DC89B5E42869F69B0000E096 /* ClearDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5E32869F69B0000E096 /* ClearDoneButton.swift */; };
 		DCDE16BE280EC10100D668AF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE16BD280EC10100D668AF /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +30,6 @@
 		C798F6CC259E4FB100511286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C798F6CE259E4FB100511286 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C798F6D0259E4FB100511286 /* YambViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YambViewController.swift; sourceTree = "<group>"; };
-		C798F6D3259E4FB100511286 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C798F6D5259E4FB400511286 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C798F6D8259E4FB400511286 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C798F6DA259E4FB400511286 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +37,9 @@
 		C798F6E525A4BC8800511286 /* CellEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellEnums.swift; sourceTree = "<group>"; };
 		C7FEC90E25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMaxDiceSelectionViewController.swift; sourceTree = "<group>"; };
 		C7FEC91225A733A70021BBEE /* YambDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YambDataSource.swift; sourceTree = "<group>"; };
+		DC89B5DE2869F1DD0000E096 /* CustomDiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDiceButton.swift; sourceTree = "<group>"; };
+		DC89B5E12869F2890000E096 /* Extensions+UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIStackView.swift"; sourceTree = "<group>"; };
+		DC89B5E32869F69B0000E096 /* ClearDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDoneButton.swift; sourceTree = "<group>"; };
 		DCDE16BD280EC10100D668AF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +74,8 @@
 		C798F6CB259E4FB100511286 /* Yamb */ = {
 			isa = PBXGroup;
 			children = (
+				DC89B5E02869F2760000E096 /* Extensions */,
+				DC89B5DD2869EC380000E096 /* CustomUIElements */,
 				C798F6CC259E4FB100511286 /* AppDelegate.swift */,
 				C798F6CE259E4FB100511286 /* SceneDelegate.swift */,
 				C798F6D0259E4FB100511286 /* YambViewController.swift */,
@@ -78,13 +84,29 @@
 				C754F84025B1DC3700781E62 /* TopBottomDiceSelectionViewController.swift */,
 				C798F6E225A4B94200511286 /* YambCell.swift */,
 				C798F6E525A4BC8800511286 /* CellEnums.swift */,
-				C798F6D2259E4FB100511286 /* Main.storyboard */,
 				C798F6D5259E4FB400511286 /* Assets.xcassets */,
 				C798F6D7259E4FB400511286 /* LaunchScreen.storyboard */,
 				C798F6DA259E4FB400511286 /* Info.plist */,
 				DCDE16BD280EC10100D668AF /* LoginViewController.swift */,
 			);
 			path = Yamb;
+			sourceTree = "<group>";
+		};
+		DC89B5DD2869EC380000E096 /* CustomUIElements */ = {
+			isa = PBXGroup;
+			children = (
+				DC89B5DE2869F1DD0000E096 /* CustomDiceButton.swift */,
+				DC89B5E32869F69B0000E096 /* ClearDoneButton.swift */,
+			);
+			path = CustomUIElements;
+			sourceTree = "<group>";
+		};
+		DC89B5E02869F2760000E096 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DC89B5E12869F2890000E096 /* Extensions+UIStackView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +174,6 @@
 			files = (
 				C798F6D9259E4FB400511286 /* LaunchScreen.storyboard in Resources */,
 				C798F6D6259E4FB400511286 /* Assets.xcassets in Resources */,
-				C798F6D4259E4FB100511286 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,28 +185,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCDE16BE280EC10100D668AF /* LoginViewController.swift in Sources */,
+				DC89B5E42869F69B0000E096 /* ClearDoneButton.swift in Sources */,
 				C798F6D1259E4FB100511286 /* YambViewController.swift in Sources */,
 				C798F6CD259E4FB100511286 /* AppDelegate.swift in Sources */,
+				DC89B5DF2869F1DD0000E096 /* CustomDiceButton.swift in Sources */,
 				C7FEC90F25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift in Sources */,
 				C7FEC91325A733A70021BBEE /* YambDataSource.swift in Sources */,
 				C798F6E325A4B94200511286 /* YambCell.swift in Sources */,
 				C798F6CF259E4FB100511286 /* SceneDelegate.swift in Sources */,
 				C798F6E625A4BC8800511286 /* CellEnums.swift in Sources */,
 				C754F84125B1DC3700781E62 /* TopBottomDiceSelectionViewController.swift in Sources */,
+				DC89B5E22869F2890000E096 /* Extensions+UIStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C798F6D2259E4FB100511286 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C798F6D3259E4FB100511286 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C798F6D7259E4FB400511286 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

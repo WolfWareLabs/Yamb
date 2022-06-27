@@ -8,48 +8,6 @@
 import UIKit
 import SnapKit
 
-extension UIStackView {
-    convenience init(arrangedSubviews: [UIView], spacing: CGFloat, axis: NSLayoutConstraint.Axis, distribution: UIStackView.Distribution, alignment: UIStackView.Alignment, layoutInsets: UIEdgeInsets){
-        self.init(arrangedSubviews: arrangedSubviews)
-        self.spacing = spacing
-        self.axis = axis
-        self.distribution = distribution
-        self.alignment = alignment
-        //self.layoutInsets = layoutInsets
-    }
-}
-
-class CustomButton: UIButton {
-    public let buttonImage: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
-    var viewModel: CustomButtonViewModel
-
-    init(with viewModel: CustomButtonViewModel){
-        self.viewModel = viewModel
-        super.init(frame: .zero)
-
-        addSubview(buttonImage)
-        self.snp.makeConstraints {make in
-            make.width.equalTo(100)
-            make.height.equalTo(100)
-        }
-        buttonImage.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        buttonImage.image = UIImage(named: viewModel.buttonImage)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-struct CustomButtonViewModel {
-    let buttonImage: String
-}
-
 protocol DiceSelectionDelegate: AnyObject {
     func didSelect(_ diceRolls: [DiceRoll], indexPath: IndexPath?, hasStar: Bool)
     func didClear(indexPath: IndexPath?)
@@ -79,27 +37,16 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
         title.text = field?.row?.longTitle
         return title
     }()
-    lazy var clearButton: UIButton = {
-        var button = UIButton()
-        //button.isHidden = !shouldShowClear
+    lazy var clearButton: ClearDoneButton = {
+        var button = ClearDoneButton()
         button.setTitle("Clear", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(100)
-        }
         button.addTarget(self, action: #selector(onClear), for: .touchUpInside)
         return button
     }()
     
-    lazy var doneButton: UIButton = {
-        var button = UIButton()
+    lazy var doneButton: ClearDoneButton = {
+        var button = ClearDoneButton()
         button.setTitle("Done", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(100)
-        }
         button.addTarget(self, action: #selector(onDone), for: .touchUpInside)
         return button
     }()
@@ -118,55 +65,55 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
         return label
     }()
     
-    lazy var button1: CustomButton = {
-        var btn = CustomButton(with: CustomButtonViewModel(buttonImage: "dice1"))
+    lazy var button1: CustomDiceButton = {
+        var btn = CustomDiceButton(with: CustomButtonViewModel(buttonImage: "dice1"))
         btn.addTarget(self, action: #selector(onSelect), for: .touchUpInside)
         btn.tag = 1
         return btn
     }()
-    
-    lazy var button2: CustomButton = {
-        var btn = CustomButton(with: CustomButtonViewModel(buttonImage: "dice2"))
+
+    lazy var button2: CustomDiceButton = {
+        var btn = CustomDiceButton(with: CustomButtonViewModel(buttonImage: "dice2"))
         btn.addTarget(self, action: #selector(onSelect), for: .touchUpInside)
         btn.tag = 2
         return btn
     }()
-    
-    lazy var button3: CustomButton = {
-        var btn = CustomButton(with: CustomButtonViewModel(buttonImage: "dice3"))
+
+    lazy var button3: CustomDiceButton = {
+        var btn = CustomDiceButton(with: CustomButtonViewModel(buttonImage: "dice3"))
         btn.addTarget(self, action: #selector(onSelect), for: .touchUpInside)
         btn.tag = 3
         return btn
     }()
-    
-    lazy var button4: CustomButton = {
-        var btn = CustomButton(with: CustomButtonViewModel(buttonImage: "dice4"))
+
+    lazy var button4: CustomDiceButton = {
+        var btn = CustomDiceButton(with: CustomButtonViewModel(buttonImage: "dice4"))
         btn.addTarget(self, action: #selector(onSelect), for: .touchUpInside)
         btn.tag = 4
         return btn
     }()
-    
-    lazy var button5: CustomButton = {
-        var btn = CustomButton(with: CustomButtonViewModel(buttonImage: "dice5"))
+
+    lazy var button5: CustomDiceButton = {
+        var btn = CustomDiceButton(with: CustomButtonViewModel(buttonImage: "dice5"))
         btn.addTarget(self, action: #selector(onSelect), for: .touchUpInside)
         btn.tag = 5
         return btn
     }()
-    
-    lazy var button6: CustomButton = {
-        var btn = CustomButton(with: CustomButtonViewModel(buttonImage: "dice6"))
+
+    lazy var button6: CustomDiceButton = {
+        var btn = CustomDiceButton(with: CustomButtonViewModel(buttonImage: "dice6"))
         btn.addTarget(self, action: #selector(onSelect), for: .touchUpInside)
         btn.tag = 6
         return btn
     }()
     
-    lazy var btn123StackView = UIStackView(arrangedSubviews: [UIView(), button1,button2,button3, UIView()], spacing: 10, axis: .horizontal, distribution: .fill, alignment: .center, layoutInsets: .zero)
+    lazy var firstRowStackView = UIStackView(arrangedSubviews: [button1,button2,button3], spacing: 10, axis: .horizontal, distribution: .fill, alignment: .center)
     
-    lazy var btn456StackView = UIStackView(arrangedSubviews: [button4,button5,button6], spacing: 10, axis: .horizontal, distribution: .fill, alignment: .top, layoutInsets: .zero)
+    lazy var secondRowStackView = UIStackView(arrangedSubviews: [button4,button5,button6], spacing: 10, axis: .horizontal, distribution: .fill, alignment: .top)
     
-    lazy var ClearDoneStackView = UIStackView(arrangedSubviews: [clearButton, doneButton], spacing: 20, axis: .horizontal, distribution: .fillEqually, alignment: .center, layoutInsets: .zero)
+    lazy var clearDoneStackView = UIStackView(arrangedSubviews: [clearButton, doneButton], spacing: 20, axis: .horizontal, distribution: .fillEqually, alignment: .center)
     
-    lazy var mainStackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, currentSelection, selectedCollection, selectTheDiceThatYouRolled,  btn123StackView, btn456StackView, ClearDoneStackView, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center, layoutInsets: .zero)
+    lazy var mainStackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, currentSelection, selectedCollection, selectTheDiceThatYouRolled,  firstRowStackView, secondRowStackView, clearDoneStackView, UIView()], spacing: 20, axis: .vertical, distribution: .fill, alignment: .center)
     
 
     var diceRolls: [DiceRoll] = []
@@ -183,8 +130,9 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
             make.bottom.left.right.equalTo(view.safeAreaLayoutGuide).inset(20)
             
         }
+        view.backgroundColor = .white
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return diceRolls.count
     }
@@ -210,7 +158,7 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
         if field?.row?.fiveDiceRequired == true && diceRolls.count < 5 {
             let alert = UIAlertController(title: nil, message: "You must select at least five dice", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+            present(self, animated: true)
             return
         }
         delegate?.didSelect(diceRolls, indexPath: field?.indexPath, hasStar: false)
