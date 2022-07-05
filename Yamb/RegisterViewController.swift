@@ -21,116 +21,65 @@ class RegisterViewController: UIViewController {
         return label
     }()
     
-    lazy var nameField: UITextField = {
-        var nameField = UITextField()
+    lazy var nameField: CustomLoginTextField = {
+        var nameField = CustomLoginTextField()
         nameField.placeholder = "Name"
-        nameField.layer.borderWidth = 1
-        nameField.layer.borderColor = UIColor.black.cgColor
-        nameField.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return nameField
     }()
     
-    lazy var surnameField: UITextField = {
-        var surnameField = UITextField()
+    lazy var surnameField: CustomLoginTextField = {
+        var surnameField = CustomLoginTextField()
         surnameField.placeholder = "Surname"
-        surnameField.layer.borderWidth = 1
-        surnameField.layer.borderColor = UIColor.black.cgColor
-        surnameField.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return surnameField
     }()
     
-    lazy var emailField: UITextField = {
-        var emailField = UITextField()
+    lazy var emailField: CustomLoginTextField = {
+        var emailField = CustomLoginTextField()
         emailField.placeholder = "Email Address"
-        emailField.layer.borderWidth = 1
-        emailField.layer.borderColor = UIColor.black.cgColor
-        emailField.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return emailField
     }()
     
-    lazy var passwordField: UITextField = {
-        var passField = UITextField()
+    lazy var passwordField: CustomLoginTextField = {
+        var passField = CustomLoginTextField()
         passField.placeholder = "Password"
-        passField.layer.borderWidth = 1
-        passField.layer.borderColor = UIColor.black.cgColor
         passField.isSecureTextEntry = true
-        passField.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return passField
     }()
     
-    lazy var confirmPasswordField: UITextField = {
-        var passField = UITextField()
+    lazy var confirmPasswordField: CustomLoginTextField = {
+        var passField = CustomLoginTextField()
         passField.placeholder = "Confirm password"
-        passField.layer.borderWidth = 1
-        passField.layer.borderColor = UIColor.black.cgColor
         passField.isSecureTextEntry = true
-        passField.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return passField
     }()
     
-    lazy var registerButton: UIButton = {
-        var button = UIButton()
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
+    lazy var registerButton: CustomLoginButton = {
+        var button = CustomLoginButton()
         button.setTitle("Continue", for: .normal)
-        button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(onRegister), for: .touchUpInside)
-        button.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return button
     }()
     
-    lazy var allFieldsRequired: UILabel = {
-        var label = UILabel()
-        label.textAlignment = .center
+    lazy var allFieldsRequired: CustomErrorLabel = {
+        var label = CustomErrorLabel()
         label.text = "All fields are required"
-        label.font = .systemFont(ofSize: 25, weight: .semibold)
-        label.textColor = .systemRed
-        label.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return label
     }()
     
-    lazy var passwordsDontMatch: UILabel = {
-        var label = UILabel()
-        label.textAlignment = .center
+    lazy var passwordsDontMatch: CustomErrorLabel = {
+        var label = CustomErrorLabel()
         label.text = "Passwords don't match"
-        label.font = .systemFont(ofSize: 25, weight: .semibold)
-        label.textColor = .systemRed
-        label.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return label
     }()
     
-    lazy var registerStackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, nameField, surnameField, emailField, passwordField, confirmPasswordField, registerButton, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center)
+    lazy var registerStackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, allFieldsRequired, passwordsDontMatch, nameField, surnameField, emailField, passwordField, confirmPasswordField, registerButton, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center)
     
     @objc func onRegister(_ sender: UIButton){
         if emailField.text?.count == 0 || passwordField.text?.count == 0 {
-        registerStackView.addSubview(allFieldsRequired)
+            allFieldsRequired.isHidden = false
         }
         else if passwordField.text != confirmPasswordField.text {
-            registerStackView.addSubview(passwordsDontMatch)
+            passwordsDontMatch.isHidden = false
         }
         else {
             show(YambViewController(), sender: self)

@@ -21,81 +21,48 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    lazy var emailField: UITextField = {
-        var emailField = UITextField()
-        emailField.placeholder = "Email Address"
-        emailField.layer.borderWidth = 1
-        emailField.layer.borderColor = UIColor.black.cgColor
-        emailField.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
+    lazy var emailField: CustomLoginTextField = {
+        var emailField = CustomLoginTextField()
+        emailField.placeholder = "Email address"
         return emailField
     }()
     
-    lazy var passwordField: UITextField = {
-        var passField = UITextField()
+    lazy var passwordField: CustomLoginTextField = {
+        var passField = CustomLoginTextField()
         passField.placeholder = "Password"
-        passField.layer.borderWidth = 1
-        passField.layer.borderColor = UIColor.black.cgColor
         passField.isSecureTextEntry = true
-        passField.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return passField
     }()
     
-    lazy var forgotPass: UILabel = {
-        var label = UILabel()
-        label.textAlignment = .center
-        label.text = "Forgot Password?"
-        label.font = .systemFont(ofSize: 15, weight: .semibold)
-        label.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
-        return label
-    }()
-    
-    lazy var continueButton: UIButton = {
-        var button = UIButton()
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
-        button.setTitle("Continue", for: .normal)
-        button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(onContinue), for: .touchUpInside)
-        button.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
-        return button
-    }()
-    
-    lazy var continueWithApple: UIButton = {
-        var button = UIButton()
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 5
-        button.setTitleColor(.white, for: .normal)
-        button.setTitle("Continue with Apple", for: .normal)
-        button.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
-        return button
-    }()
-    
-    lazy var continueWithGoogle: UIButton = {
-        var button = UIButton()
+    lazy var forgotPass: CustomLoginButton = {
+        var button = CustomLoginButton()
         button.backgroundColor = .white
-        button.layer.cornerRadius = 5
-        //button.layer.borderColor =  UIColor(ciColor: .black).cgColor
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.label, for: .normal)
+        button.setTitle("Forgot Password?", for: .normal)
+        return button
+    }()
+    
+    lazy var continueButton: CustomLoginButton = {
+        var button = CustomLoginButton()
+        button.setTitle("Continue", for: .normal)
+        button.addTarget(self, action: #selector(onContinue), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var continueWithApple: CustomLoginButton = {
+        var button = CustomLoginButton()
+        button.backgroundColor = .black
+        button.setTitle("Continue with Apple", for: .normal)
+        return button
+    }()
+    
+    lazy var continueWithGoogle: CustomLoginButton = {
+        var button = CustomLoginButton()
+        button.backgroundColor = .white
+        button.setTitleColor(.label, for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
         button.setTitle("Continue with Google", for: .normal)
-        button.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return button
     }()
     
@@ -111,36 +78,20 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    lazy var registerButton: UIButton = {
-        var button = UIButton()
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
+    lazy var registerButton: CustomLoginButton = {
+        var button = CustomLoginButton()
         button.setTitle("Register", for: .normal)
-        button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(onRegister), for: .touchUpInside)
-        button.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return button
     }()
     
-    //var shouldShowError = false
-    
-    lazy var errorMessage: UILabel = {
-        var label = UILabel()
-        label.textAlignment = .center
+    lazy var errorMessage: CustomErrorLabel = {
+        var label = CustomErrorLabel()
         label.text = "All fields are required"
-        label.font = .systemFont(ofSize: 25, weight: .semibold)
-        label.textColor = .systemRed
-        label.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(300)
-        }
         return label
     }()
     
-    lazy var loginStack = UIStackView(arrangedSubviews: [UIView(), titleLabel, emailField, passwordField, forgotPass, continueButton, continueWithApple, continueWithGoogle, dontHaveAnAcc, registerButton, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center)
+    lazy var loginStack = UIStackView(arrangedSubviews: [UIView(), titleLabel, errorMessage, emailField, passwordField, forgotPass, continueButton, continueWithApple, continueWithGoogle, dontHaveAnAcc, registerButton, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,7 +106,7 @@ class LoginViewController: UIViewController {
     
     @objc func onContinue(_ sender: UIButton) {
         if emailField.text?.count == 0 || passwordField.text?.count == 0 {
-        loginStack.addSubview(errorMessage)
+            errorMessage.isHidden = false
         }
         else {
             show(YambViewController(), sender: self)
