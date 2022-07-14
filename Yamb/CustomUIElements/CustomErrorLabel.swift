@@ -9,14 +9,16 @@ import UIKit
 
 class CustomErrorLabel: UILabel {
     
-    init() {
+    init(_ label: String) {
         super.init(frame: .zero)
         self.textAlignment = .center
         self.font = .systemFont(ofSize: 25, weight: .semibold)
         self.textColor = .systemRed
         self.isHidden = true
+        self.numberOfLines = 0
+        self.lineBreakMode = .byWordWrapping
+        self.text = label
         self.snp.makeConstraints { make in
-            make.height.equalTo(50)
             make.width.equalTo(300)
         }
     }

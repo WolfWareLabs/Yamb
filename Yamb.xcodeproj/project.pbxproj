@@ -22,6 +22,7 @@
 		DC3DBF602874354F00873620 /* CustomLoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3DBF5F2874354F00873620 /* CustomLoginTextField.swift */; };
 		DC3DBF622874385200873620 /* CustomLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3DBF612874385200873620 /* CustomLoginButton.swift */; };
 		DC3DBF6428743D3000873620 /* CustomErrorLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3DBF6328743D3000873620 /* CustomErrorLabel.swift */; };
+		DC3DBF68287EEA5600873620 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC3DBF6A287EEA5600873620 /* Localizable.strings */; };
 		DC89B5DF2869F1DD0000E096 /* CustomDiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5DE2869F1DD0000E096 /* CustomDiceButton.swift */; };
 		DC89B5E22869F2890000E096 /* Extensions+UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5E12869F2890000E096 /* Extensions+UIStackView.swift */; };
 		DC89B5E42869F69B0000E096 /* ClearDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5E32869F69B0000E096 /* ClearDoneButton.swift */; };
@@ -45,6 +46,10 @@
 		DC3DBF5F2874354F00873620 /* CustomLoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoginTextField.swift; sourceTree = "<group>"; };
 		DC3DBF612874385200873620 /* CustomLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoginButton.swift; sourceTree = "<group>"; };
 		DC3DBF6328743D3000873620 /* CustomErrorLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorLabel.swift; sourceTree = "<group>"; };
+		DC3DBF65287DF64C00873620 /* mk-MK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "mk-MK"; path = "mk-MK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		DC3DBF69287EEA5600873620 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DC3DBF6B287EEA7400873620 /* mk-MK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "mk-MK"; path = "mk-MK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DC74CF2D28802A5E00153367 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		DC89B5DE2869F1DD0000E096 /* CustomDiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDiceButton.swift; sourceTree = "<group>"; };
 		DC89B5E12869F2890000E096 /* Extensions+UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIStackView.swift"; sourceTree = "<group>"; };
 		DC89B5E32869F69B0000E096 /* ClearDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDoneButton.swift; sourceTree = "<group>"; };
@@ -97,6 +102,7 @@
 				C798F6DA259E4FB400511286 /* Info.plist */,
 				DCDE16BD280EC10100D668AF /* LoginViewController.swift */,
 				DC3DBF5D286F23C700873620 /* RegisterViewController.swift */,
+				DC3DBF6A287EEA5600873620 /* Localizable.strings */,
 			);
 			path = Yamb;
 			sourceTree = "<group>";
@@ -165,6 +171,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"mk-MK",
+				es,
 			);
 			mainGroup = C798F6C0259E4FB100511286;
 			packageReferences = (
@@ -184,6 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC3DBF68287EEA5600873620 /* Localizable.strings in Resources */,
 				C798F6D9259E4FB400511286 /* LaunchScreen.storyboard in Resources */,
 				C798F6D6259E4FB400511286 /* Assets.xcassets in Resources */,
 			);
@@ -222,8 +231,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				C798F6D8259E4FB400511286 /* Base */,
+				DC3DBF65287DF64C00873620 /* mk-MK */,
+				DC74CF2D28802A5E00153367 /* es */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		DC3DBF6A287EEA5600873620 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC3DBF69287EEA5600873620 /* en */,
+				DC3DBF6B287EEA7400873620 /* mk-MK */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -233,6 +253,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -294,6 +315,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

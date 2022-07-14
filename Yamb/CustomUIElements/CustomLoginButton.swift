@@ -7,12 +7,15 @@
 
 import UIKit
 
+let cornerRadius = 5
+
 class CustomLoginButton: UIButton {
-    init() {
+    init(_ buttonTitle: String) {
         super.init(frame: .zero)
         self.backgroundColor = .systemBlue
         self.setTitleColor(.white, for: .normal)
-        self.layer.cornerRadius = 5
+        self.layer.cornerRadius = CGFloat(cornerRadius)
+        self.setTitle(buttonTitle, for: .normal)
         self.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(300)

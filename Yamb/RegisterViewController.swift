@@ -12,65 +12,35 @@ class RegisterViewController: UIViewController {
     lazy var titleLabel: UILabel = {
         var label = UILabel()
         label.textAlignment = .center
-        label.text = "Register"
+        label.text = NSLocalizedString("register.screen.title", comment: "register.screen.title")
         label.font = .systemFont(ofSize: 24, weight: .semibold)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.snp.makeConstraints { make in
-            make.height.equalTo(50)
             make.width.equalTo(100)
         }
         return label
     }()
     
-    lazy var nameField: CustomLoginTextField = {
-        var nameField = CustomLoginTextField()
-        nameField.placeholder = "Name"
-        return nameField
-    }()
+    var nameField = CustomLoginTextField(NSLocalizedString("register.textfield.name", comment: "register.textfield.name"))
     
-    lazy var surnameField: CustomLoginTextField = {
-        var surnameField = CustomLoginTextField()
-        surnameField.placeholder = "Surname"
-        return surnameField
-    }()
+    var surnameField = CustomLoginTextField(NSLocalizedString("register.textfield.surname", comment: "register.textfield.surname"))
     
-    lazy var emailField: CustomLoginTextField = {
-        var emailField = CustomLoginTextField()
-        emailField.placeholder = "Email Address"
-        return emailField
-    }()
+    var emailField = CustomLoginTextField(NSLocalizedString("login.textfield.email", comment: "login.textfield.email"))
     
-    lazy var passwordField: CustomLoginTextField = {
-        var passField = CustomLoginTextField()
-        passField.placeholder = "Password"
-        passField.isSecureTextEntry = true
-        return passField
-    }()
+    var passwordField = CustomLoginTextField(NSLocalizedString("login.textfield.password", comment: "login.textfield.password"))
     
-    lazy var confirmPasswordField: CustomLoginTextField = {
-        var passField = CustomLoginTextField()
-        passField.placeholder = "Confirm password"
-        passField.isSecureTextEntry = true
-        return passField
-    }()
+    var confirmPasswordField = CustomLoginTextField(NSLocalizedString("register.textfield.confirmpassword", comment: "register.textfield.confirmpassword"))
     
     lazy var registerButton: CustomLoginButton = {
-        var button = CustomLoginButton()
-        button.setTitle("Continue", for: .normal)
+        var button = CustomLoginButton(NSLocalizedString("register.screen.title", comment: "register.screen.title"))
         button.addTarget(self, action: #selector(onRegister), for: .touchUpInside)
         return button
     }()
     
-    lazy var allFieldsRequired: CustomErrorLabel = {
-        var label = CustomErrorLabel()
-        label.text = "All fields are required"
-        return label
-    }()
+    var allFieldsRequired = CustomErrorLabel(NSLocalizedString("login.register.label.allfieldsarerequired", comment: "login.register.label.allfieldsarerequired"))
     
-    lazy var passwordsDontMatch: CustomErrorLabel = {
-        var label = CustomErrorLabel()
-        label.text = "Passwords don't match"
-        return label
-    }()
+    var passwordsDontMatch = CustomErrorLabel(NSLocalizedString("register.passwordsdontmatch", comment: "register.passwordsdontmatch"))
     
     lazy var registerStackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, allFieldsRequired, passwordsDontMatch, nameField, surnameField, emailField, passwordField, confirmPasswordField, registerButton, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center)
     

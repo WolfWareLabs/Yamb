@@ -12,84 +12,68 @@ class LoginViewController: UIViewController {
     lazy var titleLabel: UILabel = {
         var label = UILabel()
         label.textAlignment = .center
-        label.text = "Log In"
+        label.text = NSLocalizedString("login.screen.title", comment: "login.screen.title")
         label.font = .systemFont(ofSize: 24, weight: .semibold)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.snp.makeConstraints { make in
-            make.height.equalTo(50)
             make.width.equalTo(100)
         }
         return label
     }()
     
-    lazy var emailField: CustomLoginTextField = {
-        var emailField = CustomLoginTextField()
-        emailField.placeholder = "Email address"
-        return emailField
-    }()
+    var emailField = CustomLoginTextField(NSLocalizedString("login.textfield.email", comment: "login.textfield.email"))
     
-    lazy var passwordField: CustomLoginTextField = {
-        var passField = CustomLoginTextField()
-        passField.placeholder = "Password"
-        passField.isSecureTextEntry = true
-        return passField
-    }()
+    var passwordField = CustomLoginTextField(NSLocalizedString("login.textfield.password", comment: "login.textfield.password"))
     
     lazy var forgotPass: CustomLoginButton = {
-        var button = CustomLoginButton()
+        var button = CustomLoginButton(NSLocalizedString("login.label.forgotpassword", comment: "login.label.forgotpassword"))
         button.backgroundColor = .white
         button.setTitleColor(.label, for: .normal)
-        button.setTitle("Forgot Password?", for: .normal)
         return button
     }()
     
     lazy var continueButton: CustomLoginButton = {
-        var button = CustomLoginButton()
-        button.setTitle("Continue", for: .normal)
+        var button = CustomLoginButton(NSLocalizedString("login.buttontitle.continue", comment: "login.buttontitle.continue"))
         button.addTarget(self, action: #selector(onContinue), for: .touchUpInside)
         return button
     }()
     
     lazy var continueWithApple: CustomLoginButton = {
-        var button = CustomLoginButton()
+        var button = CustomLoginButton(NSLocalizedString("login.buttontitle.continuewithapple", comment: "login.buttontitle.continuewithapple"))
         button.backgroundColor = .black
-        button.setTitle("Continue with Apple", for: .normal)
         return button
     }()
     
     lazy var continueWithGoogle: CustomLoginButton = {
-        var button = CustomLoginButton()
+        var button = CustomLoginButton(NSLocalizedString("login.buttontitle.continuewithgoogle", comment: "login.buttontitle.continuewithgoogle"))
         button.backgroundColor = .white
         button.setTitleColor(.label, for: .normal)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor
-        button.setTitle("Continue with Google", for: .normal)
         return button
     }()
     
     lazy var dontHaveAnAcc: UILabel = {
         var label = UILabel()
         label.textAlignment = .center
-        label.text = "Don't have an account?"
+        label.text = NSLocalizedString("login.textfield.donthaveanaccount", comment: "login.textfield.donthaveanaccount")
         label.font = .systemFont(ofSize: 15, weight: .semibold)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.snp.makeConstraints { make in
-            make.height.equalTo(50)
             make.width.equalTo(300)
         }
         return label
     }()
     
     lazy var registerButton: CustomLoginButton = {
-        var button = CustomLoginButton()
-        button.setTitle("Register", for: .normal)
+        var button = CustomLoginButton(NSLocalizedString("register.screen.title", comment: "register.screen.title"))
         button.addTarget(self, action: #selector(onRegister), for: .touchUpInside)
         return button
     }()
     
-    lazy var errorMessage: CustomErrorLabel = {
-        var label = CustomErrorLabel()
-        label.text = "All fields are required"
-        return label
-    }()
+    var errorMessage = CustomErrorLabel(NSLocalizedString("login.register.label.allfieldsarerequired", comment: "login.register.label.allfieldsarerequired"))
     
     lazy var loginStack = UIStackView(arrangedSubviews: [UIView(), titleLabel, errorMessage, emailField, passwordField, forgotPass, continueButton, continueWithApple, continueWithGoogle, dontHaveAnAcc, registerButton, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center)
     
