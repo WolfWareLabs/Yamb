@@ -12,7 +12,7 @@ class CustomErrorLabel: UILabel {
     init(_ label: String) {
         super.init(frame: .zero)
         self.textAlignment = .center
-        self.font = .systemFont(ofSize: 25, weight: .semibold)
+        self.font = .systemFont(ofSize: 20, weight: .semibold)
         self.textColor = .systemRed
         self.isHidden = true
         self.numberOfLines = 0
@@ -20,6 +20,7 @@ class CustomErrorLabel: UILabel {
         self.text = label
         self.snp.makeConstraints { make in
             make.width.equalTo(300)
+            //make.height.equalTo(40)
         }
     }
     

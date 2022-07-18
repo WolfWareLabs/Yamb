@@ -17,7 +17,7 @@ class RegisterViewController: UIViewController {
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.snp.makeConstraints { make in
-            make.width.equalTo(100)
+            make.width.equalTo(300)
         }
         return label
     }()
@@ -38,18 +38,20 @@ class RegisterViewController: UIViewController {
         return button
     }()
     
-    var allFieldsRequired = CustomErrorLabel(NSLocalizedString("login.register.label.allfieldsarerequired", comment: "login.register.label.allfieldsarerequired"))
+    var allFieldsRequiredLabel = CustomErrorLabel(NSLocalizedString("login.register.label.allfieldsarerequired", comment: "login.register.label.allfieldsarerequired"))
     
-    var passwordsDontMatch = CustomErrorLabel(NSLocalizedString("register.passwordsdontmatch", comment: "register.passwordsdontmatch"))
+    var passwordsDontMatchLabel = CustomErrorLabel(NSLocalizedString("register.passwordsdontmatch", comment: "register.passwordsdontmatch"))
     
-    lazy var registerStackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, allFieldsRequired, passwordsDontMatch, nameField, surnameField, emailField, passwordField, confirmPasswordField, registerButton, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center)
+    lazy var registerStackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, allFieldsRequiredLabel, passwordsDontMatchLabel, nameField, surnameField, emailField, passwordField, confirmPasswordField, registerButton, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center)
     
     @objc func onRegister(_ sender: UIButton){
         if emailField.text?.count == 0 || passwordField.text?.count == 0 {
-            allFieldsRequired.isHidden = false
+            allFieldsRequiredLabel.isHidden = false
+            self.allFieldsRequiredLabel.shake()
         }
         else if passwordField.text != confirmPasswordField.text {
-            passwordsDontMatch.isHidden = false
+            passwordsDontMatchLabel.isHidden = false
+            self.passwordsDontMatchLabel.shake()
         }
         else {
             show(YambViewController(), sender: self)

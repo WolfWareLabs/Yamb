@@ -73,9 +73,9 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    var errorMessage = CustomErrorLabel(NSLocalizedString("login.register.label.allfieldsarerequired", comment: "login.register.label.allfieldsarerequired"))
+    var allFieldsRequiredLabel = CustomErrorLabel(NSLocalizedString("login.register.label.allfieldsarerequired", comment: "login.register.label.allfieldsarerequired"))
     
-    lazy var loginStack = UIStackView(arrangedSubviews: [UIView(), titleLabel, errorMessage, emailField, passwordField, forgotPass, continueButton, continueWithApple, continueWithGoogle, dontHaveAnAcc, registerButton, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center)
+    lazy var loginStack = UIStackView(arrangedSubviews: [UIView(), titleLabel, allFieldsRequiredLabel, emailField, passwordField, forgotPass, continueButton, continueWithApple, continueWithGoogle, dontHaveAnAcc, registerButton, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +90,8 @@ class LoginViewController: UIViewController {
     
     @objc func onContinue(_ sender: UIButton) {
         if emailField.text?.count == 0 || passwordField.text?.count == 0 {
-            errorMessage.isHidden = false
+            allFieldsRequiredLabel.isHidden = false
+            self.allFieldsRequiredLabel.shake()
         }
         else {
             show(YambViewController(), sender: self)
