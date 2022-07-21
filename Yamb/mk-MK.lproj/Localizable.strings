@@ -1,0 +1,22 @@
+/* 
+  LocalizableMacedonian.strings
+  Yamb
+
+  Created by Ana Peshevska on 13.7.22.
+  
+*/
+"login.screen.title" = "Најава";
+"login.textfield.email" = "Е-маил адреса";
+"login.textfield.password" = "Лозинка";
+"login.label.forgotpassword" = "Ја заборавивте лозинката?";
+"login.buttontitle.continue" = "Продолжи";
+"login.buttontitle.continuewithapple" = "Најава со Apple";
+"login.buttontitle.continuewithgoogle" = "Најава со Google";
+"login.textfield.donthaveanaccount" = "Немате профил?";
+"register.screen.title" = "Регистрирајте се";
+"login.register.label.allfieldsarerequired" = "Не се пополнети сите полиња";
+"register.textfield.name" = "Име";
+"register.textfield.surname" = "Презиме";
+"register.textfield.confirmpassword" = "Потврдете лозинка";
+"register.passwordsdontmatch" = "Лозинките не се совпаѓаат";
+
