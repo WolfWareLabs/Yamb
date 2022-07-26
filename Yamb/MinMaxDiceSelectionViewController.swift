@@ -158,7 +158,7 @@ class MinMaxDiceSelectionViewController: UIViewController, UICollectionViewDataS
         if field?.row?.fiveDiceRequired == true && diceRolls.count < 5 {
             let alert = UIAlertController(title: nil, message: "You must select at least five dice", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(self, animated: true)
+            present(alert, animated: true)
             return
         }
         delegate?.didSelect(diceRolls, indexPath: field?.indexPath, hasStar: false)

@@ -123,16 +123,16 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(self, animated: true)
+            present(alert, animated: true)
         case .ColumnHeader:
             let alert = UIAlertController(title: nil, message: field.column.description, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(self, animated: true)
+            present(alert, animated: true)
         case .RowName:
             guard let description = field.row?.description else { return }
             let alert = UIAlertController(title: nil, message: description, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(self, animated: true)
+            present(alert, animated: true)
         }
     }
     
@@ -160,7 +160,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(self, animated: true)
+        present(alert, animated: true)
     }
     
     func didDismiss() {
@@ -171,7 +171,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
                 self.yambCollectionView.reloadData()
                 self.totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
             }))
-            present(self, animated: true)
+            present(alert, animated: true)
         }
     }
 }
