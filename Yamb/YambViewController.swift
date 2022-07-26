@@ -56,6 +56,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             make.width.equalTo(150)
             make.height.equalTo(50)
         }
+        b.addTarget(self, action: #selector(onNewGame), for: .touchUpInside)
         return b
     }()
     
