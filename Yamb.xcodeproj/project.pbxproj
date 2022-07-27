@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD745B0E28914D71008A7C7E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD745B0D28914D71008A7C7E /* SettingsViewController.swift */; };
 		ADE85B3728912B6700714504 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE85B3628912B6700714504 /* MainMenuViewController.swift */; };
 		ADE85B3928912FD300714504 /* UIViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE85B3828912FD300714504 /* UIViewControllerPreview.swift */; };
 		C754F84125B1DC3700781E62 /* TopBottomDiceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C754F84025B1DC3700781E62 /* TopBottomDiceSelectionViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD745B0D28914D71008A7C7E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ADE85B3628912B6700714504 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		ADE85B3828912FD300714504 /* UIViewControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerPreview.swift; sourceTree = "<group>"; };
 		C754F84025B1DC3700781E62 /* TopBottomDiceSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBottomDiceSelectionViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				DC3DBF5D286F23C700873620 /* RegisterViewController.swift */,
 				DC3DBF6A287EEA5600873620 /* Localizable.strings */,
 				ADE85B3828912FD300714504 /* UIViewControllerPreview.swift */,
+				AD745B0D28914D71008A7C7E /* SettingsViewController.swift */,
 			);
 			path = Yamb;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				ADE85B3728912B6700714504 /* MainMenuViewController.swift in Sources */,
 				DCDE16BE280EC10100D668AF /* LoginViewController.swift in Sources */,
 				DC89B5E42869F69B0000E096 /* ClearDoneButton.swift in Sources */,
+				AD745B0E28914D71008A7C7E /* SettingsViewController.swift in Sources */,
 				C798F6D1259E4FB100511286 /* YambViewController.swift in Sources */,
 				DC3DBF622874385200873620 /* CustomLoginButton.swift in Sources */,
 				C798F6CD259E4FB100511286 /* AppDelegate.swift in Sources */,

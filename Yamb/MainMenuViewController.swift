@@ -31,6 +31,7 @@ class MainMenuViewController: UIViewController, PreviewProvider {
     
     lazy var newGameButton: UIButton = {
         let button = CustomLoginButton(NSLocalizedString("mainmenu.newgame", comment: "New game"))
+        button.addTarget(self, action: #selector(onNewGame), for: .touchUpInside)
         
         return button
     }()
@@ -38,6 +39,7 @@ class MainMenuViewController: UIViewController, PreviewProvider {
     lazy var settingsButton: UIButton = {
         let button = CustomLoginButton(NSLocalizedString("mainmenu.settings", comment: "Settings"))
         button.backgroundColor = .black
+        button.addTarget(self, action: #selector(onSettings), for: .touchUpInside)
         
         return button
     }()
@@ -62,5 +64,13 @@ class MainMenuViewController: UIViewController, PreviewProvider {
             make.center.equalTo(view)
         }
         view.backgroundColor = .white
+    }
+    
+    @objc func onNewGame(_ sender: Any) {
+        show(YambViewController(), sender: self)
+    }
+    
+    @objc func onSettings(_ sender: Any) {
+        show(SettingsViewController(), sender: self)
     }
 }
