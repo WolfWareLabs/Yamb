@@ -94,7 +94,7 @@ class LoginViewController: UIViewController {
             self.allFieldsRequiredLabel.shake()
         }
         else {
-            show(YambViewController(), sender: self)
+            show(MainMenuViewController(), sender: self)
         }
     }
     
