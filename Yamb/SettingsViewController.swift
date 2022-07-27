@@ -18,8 +18,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    let options = ["settings.extraColumns", "settings.superYamb"]
+    let options = YambSetting.allCases
     let cellReuseIdentifier = "cell"
+    let model = SettingsModel()
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -70,8 +71,19 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)!
-        cell.textLabel!.text = NSLocalizedString(options[indexPath.row], comment: options[indexPath.row])
-        cell.accessoryView = UISwitch()
+        
+        let currSetting = options[indexPath.row]
+        cell.textLabel!.text = NSLocalizedString(currSetting.rawValue, comment: currSetting.rawValue)
+        
+        let uiSwitch = SettingSwitch(currSetting)
+        uiSwitch.setOn(model.get(currSetting), animated: false)
+        uiSwitch.addTarget(self, action: #selector(onSwitchChange), for: .valueChanged)
+        
+        cell.accessoryView = uiSwitch
         return cell
+    }
+    
+    @objc func onSwitchChange(_ sender: SettingSwitch) {
+        model.set(sender.setting, value: sender.isOn)
     }
 }
