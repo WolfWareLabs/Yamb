@@ -56,6 +56,8 @@ class MainMenuViewController: UIViewController, PreviewProvider {
         return stack
     }()
     
+    let settings = YambSettings()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mainStack)
@@ -71,6 +73,6 @@ class MainMenuViewController: UIViewController, PreviewProvider {
     }
     
     @objc func onSettings(_ sender: Any) {
-        show(SettingsViewController(), sender: self)
+        show(SettingsViewController(settingsModel: settings), sender: self)
     }
 }

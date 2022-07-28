@@ -6,9 +6,17 @@
 //
 
 import UIKit
+import SwiftUI
 
-class YambViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, DiceSelectionDelegate {
-
+class YambViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, DiceSelectionDelegate, PreviewProvider {
+    
+    static var previews: some View {
+        UIViewControllerPreview {
+            let vc = YambViewController(settings: YambSettings())
+            return vc
+        }
+    }
+    
     lazy var totalScoreLabel: UILabel = {
         var label = UILabel()
         label.text = "Total: "
@@ -68,6 +76,22 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         return data;
     }()
+    
+    let settings: YambSettings
+    
+    init(settings: YambSettings) {
+        self.settings = settings
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("This class does not support NSCoder")
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        settings = YambSettings()
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

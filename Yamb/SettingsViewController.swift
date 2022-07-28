@@ -13,14 +13,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     static var previews: some View {
         UIViewControllerPreview {
-            let vc = SettingsViewController()
+            let vc = SettingsViewController(settingsModel: YambSettings())
             return vc
         }
     }
     
-    let options = YambSetting.allCases
     let cellReuseIdentifier = "cell"
-    let model = SettingsModel()
+    let model: YambSettings
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -46,7 +45,21 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let stack = UIStackView(arrangedSubviews: [titleLabel, tableView], spacing: 10, axis: .vertical, distribution: .fill, alignment: .leading)
         return stack;
     }()
-
+    
+    init(settingsModel: YambSettings) {
+        model = settingsModel
+        super.init()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        model = YambSettings()
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("This class does not support NSCoder")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mainStack)
@@ -66,17 +79,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return options.count
+        return model.allSettings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)!
         
-        let currSetting = options[indexPath.row]
-        cell.textLabel!.text = NSLocalizedString(currSetting.rawValue, comment: currSetting.rawValue)
+        let currSetting = model.allSettings[indexPath.row]
+        cell.textLabel!.text = NSLocalizedString(currSetting.name, comment: currSetting.name)
         
         let uiSwitch = SettingSwitch(currSetting)
-        uiSwitch.setOn(model.get(currSetting), animated: false)
+        uiSwitch.setOn(currSetting.value, animated: false)
         uiSwitch.addTarget(self, action: #selector(onSwitchChange), for: .valueChanged)
         
         cell.accessoryView = uiSwitch
@@ -84,6 +97,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func onSwitchChange(_ sender: SettingSwitch) {
-        model.set(sender.setting, value: sender.isOn)
+        sender.setting.value = sender.isOn
+        model.storeDefaults()
     }
 }

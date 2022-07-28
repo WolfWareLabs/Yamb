@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 class SettingSwitch: UISwitch {
-    let setting: YambSetting
+    let setting: SettingPair
     
-    init(_ setting: YambSetting) {
+    init(_ setting: SettingPair) {
         self.setting = setting
         super.init(frame: .zero)
     }
