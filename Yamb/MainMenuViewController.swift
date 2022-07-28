@@ -69,7 +69,7 @@ class MainMenuViewController: UIViewController, PreviewProvider {
     }
     
     @objc func onNewGame(_ sender: Any) {
-        show(YambViewController(), sender: self)
+        show(YambViewController(settings: settings), sender: self)
     }
     
     @objc func onSettings(_ sender: Any) {

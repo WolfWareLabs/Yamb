@@ -68,13 +68,22 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         return b
     }()
     
-    let columns: [Column] = [.rowNames, .down, .up, .free, .midOut, .outMid, .announce, .disannounce]
+    lazy var columns: [Column] = {
+        let cols: [Column]
+        if settings.extraColumns.value {
+            cols = [.rowNames, .down, .up, .free, .midOut, .outMid, .announce, .disannounce]
+        }
+        else {
+            cols = [.rowNames, .down, .up, .free, .announce]
+        }
+        return cols
+    }()
     
     lazy var dataSource: YambDataSource = {
         let data = YambDataSource(columns: columns)
         data.loadScores()
         
-        return data;
+        return data
     }()
     
     let settings: YambSettings
@@ -96,6 +105,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
         view.addSubview(contentStack)
         contentStack.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
