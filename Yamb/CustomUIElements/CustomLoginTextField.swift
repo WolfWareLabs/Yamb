@@ -15,10 +15,17 @@ class CustomLoginTextField: UITextField {
         super.init(frame: .zero)
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.black.cgColor
+        self.autocorrectionType = .no
+        self.autocapitalizationType = .none
         self.placeholder = placeholder
+        
         if placeholder == NSLocalizedString("login.textfield.password", comment: "login.textfield.password") || placeholder == NSLocalizedString("register.textfield.confirmpassword", comment: "register.textfield.confirmpassword") {
             self.isSecureTextEntry = true
         }
+        else if placeholder == NSLocalizedString("login.textfield.email", comment: "login.textfield.email") {
+            self.keyboardType = .emailAddress
+        }
+        
         self.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(300)
