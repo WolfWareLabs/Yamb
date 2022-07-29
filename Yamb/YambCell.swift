@@ -9,10 +9,12 @@ import UIKit
 import SnapKit
 
 class YambCell: UICollectionViewCell {
-    lazy var textLabel: UILabel = {
-        let label = UILabel()
+    lazy var textLabel: GlowingLabel = {
+        let label = GlowingLabel()
         label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.glowColor = UIColor.systemBlue.cgColor.copy(alpha: 0.4)
+        label.glowRadius = 3.5
         return label
     }()
     
@@ -28,11 +30,23 @@ class YambCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        let backView = UIView()
+        backView.backgroundColor = .red
+        backView.frame = textLabel.bounds
+        
+        let blur = UIBlurEffect(style: .regular)
+        let view = UIVisualEffectView(effect: blur)
+        view.frame = backView.bounds
+        backView.addSubview(view)
+        
+        contentView.addSubview(backView)
+        
         contentView.addSubview(textLabel)
         textLabel.snp.makeConstraints { make in make.center.equalToSuperview() }
         
         contentView.addSubview(infoImage)
         infoImage.snp.makeConstraints { make in make.top.right.equalToSuperview().inset(3) }
+        
     }
     
     required init?(coder: NSCoder) {

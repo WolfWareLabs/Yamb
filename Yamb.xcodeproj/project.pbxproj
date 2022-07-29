@@ -11,6 +11,7 @@
 		AD4884EA289286A400912684 /* SettingPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4884E9289286A400912684 /* SettingPair.swift */; };
 		AD745B0E28914D71008A7C7E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD745B0D28914D71008A7C7E /* SettingsViewController.swift */; };
 		AD745B172891B932008A7C7E /* SettingSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD745B162891B932008A7C7E /* SettingSwitch.swift */; };
+		ADD89EB02893567C00524A29 /* GlowingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD89EAF2893567C00524A29 /* GlowingLabel.swift */; };
 		ADE85B3728912B6700714504 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE85B3628912B6700714504 /* MainMenuViewController.swift */; };
 		ADE85B3928912FD300714504 /* UIViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE85B3828912FD300714504 /* UIViewControllerPreview.swift */; };
 		C754F84125B1DC3700781E62 /* TopBottomDiceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C754F84025B1DC3700781E62 /* TopBottomDiceSelectionViewController.swift */; };
@@ -41,6 +42,7 @@
 		AD4884E9289286A400912684 /* SettingPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPair.swift; sourceTree = "<group>"; };
 		AD745B0D28914D71008A7C7E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AD745B162891B932008A7C7E /* SettingSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitch.swift; sourceTree = "<group>"; };
+		ADD89EAF2893567C00524A29 /* GlowingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowingLabel.swift; sourceTree = "<group>"; };
 		ADE85B3628912B6700714504 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		ADE85B3828912FD300714504 /* UIViewControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerPreview.swift; sourceTree = "<group>"; };
 		C754F84025B1DC3700781E62 /* TopBottomDiceSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBottomDiceSelectionViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				DC3DBF612874385200873620 /* CustomLoginButton.swift */,
 				DC3DBF6328743D3000873620 /* CustomErrorLabel.swift */,
 				AD745B162891B932008A7C7E /* SettingSwitch.swift */,
+				ADD89EAF2893567C00524A29 /* GlowingLabel.swift */,
 			);
 			path = CustomUIElements;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				DCDE16BE280EC10100D668AF /* LoginViewController.swift in Sources */,
 				DC89B5E42869F69B0000E096 /* ClearDoneButton.swift in Sources */,
 				AD745B0E28914D71008A7C7E /* SettingsViewController.swift in Sources */,
+				ADD89EB02893567C00524A29 /* GlowingLabel.swift in Sources */,
 				C798F6D1259E4FB100511286 /* YambViewController.swift in Sources */,
 				DC3DBF622874385200873620 /* CustomLoginButton.swift in Sources */,
 				C798F6CD259E4FB100511286 /* AppDelegate.swift in Sources */,
