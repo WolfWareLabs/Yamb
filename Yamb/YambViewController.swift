@@ -22,11 +22,14 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         label.text = "Total: "
         return label
     }()
+    
+    let yambPadding: CGFloat = 10
+    
     lazy var yambCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 3
         flowLayout.minimumLineSpacing = 3
-        flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width/CGFloat(columns.count)) - 3, height: 45)
+        flowLayout.itemSize = CGSize(width: ((UIScreen.main.bounds.width - yambPadding)/CGFloat(columns.count)) - 3, height: 45)
         flowLayout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
         var yambCV = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -111,7 +114,11 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
-        self.navigationController?.navigationBar.isHidden = true
+        yambCollectionView.snp.makeConstraints { make in
+            make.right.equalTo(view.safeAreaLayoutGuide).inset(yambPadding)
+        }
+        
+        //self.navigationController?.navigationBar.isHidden = true
         
     }
     
