@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController {
     
@@ -44,7 +45,7 @@ class RegisterViewController: UIViewController {
     
     lazy var registerStackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, allFieldsRequiredLabel, passwordsDontMatchLabel, nameField, surnameField, emailField, passwordField, confirmPasswordField, registerButton, UIView()], spacing: 10, axis: .vertical, distribution: .fill, alignment: .center)
     
-    @objc func onRegister(_ sender: UIButton){
+    @objc func onRegister(_ sender: Any){
         if emailField.text?.count == 0 || passwordField.text?.count == 0 {
             allFieldsRequiredLabel.isHidden = false
             self.allFieldsRequiredLabel.shake()
@@ -54,7 +55,17 @@ class RegisterViewController: UIViewController {
             self.passwordsDontMatchLabel.shake()
         }
         else {
-            show(YambViewController(), sender: self)
+            let email = emailField.text!
+            let password = passwordField.text!
+            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                if(authResult != nil) {
+                    self.navigationController?.pushViewController(YambViewController(), animated: true)
+                } else {
+                    let alert = UIAlertController(title: "Error creating user", message: "", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
         }
     }
     
