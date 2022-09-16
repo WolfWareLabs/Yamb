@@ -18,9 +18,12 @@ class CustomLoginTextField: UITextField {
         self.autocorrectionType = .no
         self.autocapitalizationType = .none
         self.placeholder = placeholder
-        
+        if placeholder == NSLocalizedString("login.textfield.email", comment: "login.textfield.email") {
+            self.autocapitalizationType = .none
+        }
         if placeholder == NSLocalizedString("login.textfield.password", comment: "login.textfield.password") || placeholder == NSLocalizedString("register.textfield.confirmpassword", comment: "register.textfield.confirmpassword") {
             self.isSecureTextEntry = true
+            self.autocapitalizationType = .none
         }
         else if placeholder == NSLocalizedString("login.textfield.email", comment: "login.textfield.email") {
             self.keyboardType = .emailAddress

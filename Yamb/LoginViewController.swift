@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
     
@@ -88,18 +89,28 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .white
     }
     
-    @objc func onContinue(_ sender: UIButton) {
+    @objc func onContinue(_ sender: Any) {
         if emailField.text?.count == 0 || passwordField.text?.count == 0 {
             allFieldsRequiredLabel.isHidden = false
             self.allFieldsRequiredLabel.shake()
         }
         else {
-            show(MainMenuViewController(), sender: self)
+            let email = emailField.text!
+            let password = passwordField.text!
+            Auth.auth().signIn(withEmail: email, password: password) {authResult, error in
+                if(authResult != nil) {
+                    self.navigationController?.pushViewController(YambViewController(), animated: true)
+                }else {
+                    let alert = UIAlertController(title: "Error signing in", message: "Invalid username or password", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
         }
     }
     
     @objc func onRegister(_ sender: UIButton) {
-        show(RegisterViewController(), sender: self)
+        navigationController?.pushViewController(RegisterViewController(), animated: true)
     }
     
 }
