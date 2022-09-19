@@ -19,3 +19,8 @@
 "register.textfield.surname" = "Surname";
 "register.textfield.confirmpassword" = "Confirm password";
 "register.passwordsdontmatch" = "Passwords don't match";
+"mainmenu.newgame" = "New Game";
+"mainmenu.settings" = "Settings";
+"settings.title" = "Settings";
+"settings.extraColumns" = "Extra columns";
+"settings.superYamb" = "Super Yamb";

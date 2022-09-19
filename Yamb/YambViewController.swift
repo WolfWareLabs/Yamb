@@ -6,19 +6,30 @@
 //
 
 import UIKit
+import SwiftUI
 
-class YambViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, DiceSelectionDelegate {
-
+class YambViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, DiceSelectionDelegate, PreviewProvider {
+    
+    static var previews: some View {
+        UIViewControllerPreview {
+            let vc = YambViewController(settings: YambSettings())
+            return vc
+        }
+    }
+    
     lazy var totalScoreLabel: UILabel = {
         var label = UILabel()
         label.text = "Total: "
         return label
     }()
+    
+    let yambPadding: CGFloat = 10
+    
     lazy var yambCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 3
         flowLayout.minimumLineSpacing = 3
-        flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width/CGFloat(columns.count)) - 3, height: 45)
+        flowLayout.itemSize = CGSize(width: ((UIScreen.main.bounds.width - yambPadding)/CGFloat(columns.count)) - 3, height: 45)
         flowLayout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
         var yambCV = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -56,27 +67,58 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             make.width.equalTo(150)
             make.height.equalTo(50)
         }
+        b.addTarget(self, action: #selector(onNewGame), for: .touchUpInside)
         return b
     }()
     
-    let columns: [Column] = [.rowNames, .down, .up, .free, .midOut, .outMid, .announce, .disannounce]
+    lazy var columns: [Column] = {
+        let cols: [Column]
+        if settings.extraColumns.value {
+            cols = [.rowNames, .down, .up, .free, .midOut, .outMid, .announce, .disannounce]
+        }
+        else {
+            cols = [.rowNames, .down, .up, .free, .announce]
+        }
+        return cols
+    }()
     
     lazy var dataSource: YambDataSource = {
         let data = YambDataSource(columns: columns)
         data.loadScores()
         
-        return data;
+        return data
     }()
+    
+    let settings: YambSettings
+    
+    init(settings: YambSettings) {
+        self.settings = settings
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("This class does not support NSCoder")
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        settings = YambSettings()
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
         view.addSubview(contentStack)
         contentStack.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
-        self.navigationController?.navigationBar.isHidden = true
+        yambCollectionView.snp.makeConstraints { make in
+            make.right.equalTo(view.safeAreaLayoutGuide).inset(yambPadding)
+        }
+        
+        //self.navigationController?.navigationBar.isHidden = true
         
     }
     
@@ -123,16 +165,16 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(self, animated: true)
+            present(alert, animated: true)
         case .ColumnHeader:
             let alert = UIAlertController(title: nil, message: field.column.description, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(self, animated: true)
+            present(alert, animated: true)
         case .RowName:
             guard let description = field.row?.description else { return }
             let alert = UIAlertController(title: nil, message: description, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(self, animated: true)
+            present(alert, animated: true)
         }
     }
     
@@ -160,7 +202,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(self, animated: true)
+        present(alert, animated: true)
     }
     
     func didDismiss() {
@@ -171,7 +213,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
                 self.yambCollectionView.reloadData()
                 self.totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
             }))
-            present(self, animated: true)
+            present(alert, animated: true)
         }
     }
 }

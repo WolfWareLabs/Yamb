@@ -19,4 +19,8 @@
 "register.textfield.surname" = "Презиме";
 "register.textfield.confirmpassword" = "Потврдете лозинка";
 "register.passwordsdontmatch" = "Лозинките не се совпаѓаат";
-
+"mainmenu.newgame" = "Нова игра";
+"mainmenu.settings" = "Поставки";
+"settings.title" = "Поставки";
+"settings.extraColumns" = "Додатни колони";
+"settings.superYamb" = "Супер Јамб";
