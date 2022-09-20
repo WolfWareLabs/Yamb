@@ -25,6 +25,7 @@
 		C7E4EEC426EBD38600890C42 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C7E4EEC326EBD38600890C42 /* SnapKit */; };
 		C7FEC90F25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FEC90E25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift */; };
 		C7FEC91325A733A70021BBEE /* YambDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FEC91225A733A70021BBEE /* YambDataSource.swift */; };
+		DC0D1DCB28D9279600909E26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC0D1DCA28D9279600909E26 /* GoogleService-Info.plist */; };
 		DC3DBF5E286F23C700873620 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3DBF5D286F23C700873620 /* RegisterViewController.swift */; };
 		DC3DBF602874354F00873620 /* CustomLoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3DBF5F2874354F00873620 /* CustomLoginTextField.swift */; };
 		DC3DBF622874385200873620 /* CustomLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3DBF612874385200873620 /* CustomLoginButton.swift */; };
@@ -35,7 +36,6 @@
 		DC74CF35288AD5F200153367 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DC74CF34288AD5F200153367 /* FirebaseAuth */; };
 		DC74CF37288AD5F200153367 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = DC74CF36288AD5F200153367 /* FirebaseDatabase */; };
 		DC74CF39288AD5F200153367 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DC74CF38288AD5F200153367 /* FirebaseFirestore */; };
-		DC74CF3B288F1BC500153367 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC74CF3A288F1BC400153367 /* GoogleService-Info.plist */; };
 		DC89B5DF2869F1DD0000E096 /* CustomDiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5DE2869F1DD0000E096 /* CustomDiceButton.swift */; };
 		DC89B5E22869F2890000E096 /* Extensions+UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5E12869F2890000E096 /* Extensions+UIStackView.swift */; };
 		DC89B5E42869F69B0000E096 /* ClearDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5E32869F69B0000E096 /* ClearDoneButton.swift */; };
@@ -62,6 +62,7 @@
 		C798F6E525A4BC8800511286 /* CellEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellEnums.swift; sourceTree = "<group>"; };
 		C7FEC90E25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMaxDiceSelectionViewController.swift; sourceTree = "<group>"; };
 		C7FEC91225A733A70021BBEE /* YambDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YambDataSource.swift; sourceTree = "<group>"; };
+		DC0D1DCA28D9279600909E26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DC3DBF5D286F23C700873620 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		DC3DBF5F2874354F00873620 /* CustomLoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoginTextField.swift; sourceTree = "<group>"; };
 		DC3DBF612874385200873620 /* CustomLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoginButton.swift; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		DC3DBF6B287EEA7400873620 /* mk-MK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "mk-MK"; path = "mk-MK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DC74CF2D28802A5E00153367 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		DC74CF2F28859E9B00153367 /* Extentions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extentions+UIView.swift"; sourceTree = "<group>"; };
-		DC74CF3A288F1BC400153367 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DC89B5DE2869F1DD0000E096 /* CustomDiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDiceButton.swift; sourceTree = "<group>"; };
 		DC89B5E12869F2890000E096 /* Extensions+UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIStackView.swift"; sourceTree = "<group>"; };
 		DC89B5E32869F69B0000E096 /* ClearDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDoneButton.swift; sourceTree = "<group>"; };
@@ -126,10 +126,10 @@
 				C798F6D5259E4FB400511286 /* Assets.xcassets */,
 				C798F6D7259E4FB400511286 /* LaunchScreen.storyboard */,
 				C798F6DA259E4FB400511286 /* Info.plist */,
-				DC74CF3A288F1BC400153367 /* GoogleService-Info.plist */,
 				DCDE16BD280EC10100D668AF /* LoginViewController.swift */,
 				ADE85B3628912B6700714504 /* MainMenuViewController.swift */,
 				DC3DBF5D286F23C700873620 /* RegisterViewController.swift */,
+				DC0D1DCA28D9279600909E26 /* GoogleService-Info.plist */,
 				DC3DBF6A287EEA5600873620 /* Localizable.strings */,
 				ADE85B3828912FD300714504 /* UIViewControllerPreview.swift */,
 				AD745B0D28914D71008A7C7E /* SettingsViewController.swift */,
@@ -233,7 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC3DBF68287EEA5600873620 /* Localizable.strings in Resources */,
-				DC74CF3B288F1BC500153367 /* GoogleService-Info.plist in Resources */,
+				DC0D1DCB28D9279600909E26 /* GoogleService-Info.plist in Resources */,
 				C798F6D9259E4FB400511286 /* LaunchScreen.storyboard in Resources */,
 				C798F6D6259E4FB400511286 /* Assets.xcassets in Resources */,
 			);
