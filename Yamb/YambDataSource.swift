@@ -79,11 +79,17 @@ class YambDataSource {
         return [0:topFields, 1:middleFields, 2:bottomFields]
     }()
     
-    var totalScore: Int {
+    lazy var totalScore: Int = {
+        var totalScore = Int()
+        totalScore = getTotalScore(number: nil)
+        return totalScore
+    }()
+    
+    func getTotalScore(number: Int?) -> Int {
         var sumTop = 0
         var sumMiddle = 0
         var sumBottom = 0
-
+        
         fieldsDict[0]?.filter { $0.type == .Result }.forEach {
             sumTop += $0.score ?? 0
         }
@@ -103,9 +109,48 @@ class YambDataSource {
         fieldsDict[2]?.filter { $0.type == .Yamb && $0.hasStar }.forEach {_ in
             sumTop += 50
         }
-
+        
         return sumTop + sumMiddle + sumBottom
     }
+    
+    func setTotalScore(indexPath: IndexPath) -> Int {
+        var tmp = 0
+        if let field = fieldsDict[indexPath.section]?[indexPath.item] {
+            tmp = field.score!
+            if field.hasStar {
+                tmp += 50
+            }
+        }
+        return tmp
+    }
+    
+//    var totalScore: Int {
+//        var sumTop = 0
+//        var sumMiddle = 0
+//        var sumBottom = 0
+//
+//        fieldsDict[0]?.filter { $0.type == .Result }.forEach {
+//            sumTop += $0.score ?? 0
+//        }
+//        fieldsDict[0]?.filter { $0.type == .Yamb && $0.hasStar }.forEach {_ in
+//            sumTop += 50
+//        }
+//        fieldsDict[1]?.filter { $0.type == .Result }.forEach {
+//            sumMiddle += $0.score ?? 0
+//        }
+//        fieldsDict[1]?.filter { $0.type == .Yamb && $0.hasStar }.forEach {_ in
+//            sumMiddle += 50
+//        }
+//        fieldsDict[2]?.filter { $0.type == .Result }.forEach {
+//            sumBottom += $0.score ?? 0
+//            if $0.hasStar { sumMiddle += 50 }
+//        }
+//        fieldsDict[2]?.filter { $0.type == .Yamb && $0.hasStar }.forEach {_ in
+//            sumTop += 50
+//        }
+//
+//        return sumTop + sumMiddle + sumBottom
+//    }
     
     var isGameEnded: Bool {
         for (_, fields) in fieldsDict {
