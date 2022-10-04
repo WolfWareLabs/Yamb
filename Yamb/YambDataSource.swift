@@ -81,11 +81,11 @@ class YambDataSource {
     
     lazy var totalScore: Int = {
         var totalScore = Int()
-        totalScore = getTotalScore(number: nil)
+        totalScore = getTotalScore()
         return totalScore
     }()
     
-    func getTotalScore(number: Int?) -> Int {
+    func getTotalScore() -> Int {
         var sumTop = 0
         var sumMiddle = 0
         var sumBottom = 0
@@ -111,46 +111,8 @@ class YambDataSource {
         }
         
         return sumTop + sumMiddle + sumBottom
+        
     }
-    
-    func setTotalScore(indexPath: IndexPath) -> Int {
-        var tmp = 0
-        if let field = fieldsDict[indexPath.section]?[indexPath.item] {
-            tmp = field.score!
-            if field.hasStar {
-                tmp += 50
-            }
-        }
-        return tmp
-    }
-    
-//    var totalScore: Int {
-//        var sumTop = 0
-//        var sumMiddle = 0
-//        var sumBottom = 0
-//
-//        fieldsDict[0]?.filter { $0.type == .Result }.forEach {
-//            sumTop += $0.score ?? 0
-//        }
-//        fieldsDict[0]?.filter { $0.type == .Yamb && $0.hasStar }.forEach {_ in
-//            sumTop += 50
-//        }
-//        fieldsDict[1]?.filter { $0.type == .Result }.forEach {
-//            sumMiddle += $0.score ?? 0
-//        }
-//        fieldsDict[1]?.filter { $0.type == .Yamb && $0.hasStar }.forEach {_ in
-//            sumMiddle += 50
-//        }
-//        fieldsDict[2]?.filter { $0.type == .Result }.forEach {
-//            sumBottom += $0.score ?? 0
-//            if $0.hasStar { sumMiddle += 50 }
-//        }
-//        fieldsDict[2]?.filter { $0.type == .Yamb && $0.hasStar }.forEach {_ in
-//            sumTop += 50
-//        }
-//
-//        return sumTop + sumMiddle + sumBottom
-//    }
     
     var isGameEnded: Bool {
         for (_, fields) in fieldsDict {
@@ -243,7 +205,8 @@ class YambDataSource {
     }
     
     func clear(indexPath: IndexPath) {
-        if let field = fieldsDict[indexPath.section]?[indexPath.item] {
+        if let field = fieldsDict[indexPath.section]?[indexPath.row] {
+            setScore(diceRolls: [], indexPath: indexPath, hasStar: false)
             field.score = nil
             field.hasStar = false
             lastPlayedField = field
@@ -366,4 +329,5 @@ class Field: Equatable, Codable {
         self.indexPath = indexPath
         self.isEnabled = true
     }
+    
 }

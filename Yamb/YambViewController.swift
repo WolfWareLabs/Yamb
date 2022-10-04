@@ -19,7 +19,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     lazy var totalScoreLabel: UILabel = {
         var label = UILabel()
-        label.text = "Total: \(dataSource.getTotalScore(number: nil))"
+        label.text = "Total: \(dataSource.getTotalScore())"
         return label
     }()
     
@@ -182,14 +182,14 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         guard let indexPath = indexPath else { return }
         dataSource.setScore(diceRolls: diceRolls, indexPath: indexPath, hasStar: hasStar)
         yambCollectionView.reloadData()
-        totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore(number: nil))"
+        totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore())"
     }
     
     func didClear(indexPath: IndexPath?) {
         guard let indexPath = indexPath else { return }
         yambCollectionView.reloadData()
-        totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore(number: nil) - self.dataSource.setTotalScore(indexPath: indexPath))"
         dataSource.clear(indexPath: indexPath)
+        totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore())"
     }
     
     @objc func onNewGame(_ sender: Any) {
@@ -197,10 +197,9 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
         
-            
             self.dataSource.resetScores()
             self.yambCollectionView.reloadData()
-            self.totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore(number: nil))"
+            self.totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore())"
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true)
@@ -208,11 +207,11 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func didDismiss() {
         if dataSource.isGameEnded {
-            let alert = UIAlertController(title: "GAME OVER", message: "TOTAL SCORE: \(self.dataSource.getTotalScore(number: nil))", preferredStyle: .alert)
+            let alert = UIAlertController(title: "GAME OVER", message: "TOTAL SCORE: \(self.dataSource.getTotalScore())", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "New game", style: .default, handler: { _ in
                 self.dataSource.resetScores()
                 self.yambCollectionView.reloadData()
-                self.totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore(number: nil))"
+                self.totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore())"
             }))
             present(alert, animated: true)
         }
