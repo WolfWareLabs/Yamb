@@ -57,7 +57,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         stackView.distribution = .fill
         stackView.alignment = .fill
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 20)
         return stackView
     }()
     
