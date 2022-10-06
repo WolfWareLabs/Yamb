@@ -156,6 +156,7 @@ class YambDataSource {
             let fields = fields.filter { $0.column == column && $0.type != .Result }
             for field in fields {
                 guard let score = field.score else { return 0 }
+                if score == 0 {return 0}
                 sum = field.row == .min ? (sum - score) : (sum + score)
             }
     
@@ -183,6 +184,20 @@ class YambDataSource {
         userDefaults.setValue(fieldsData, forKey: kScoreDictKey);
         
         updateEnabledFields()
+    }
+    
+    func clearedScore(indexPath: IndexPath) -> Int {
+        var tmp = 0
+        if let field = fieldsDict[indexPath.section]?[indexPath.item] {
+            if (field.score != nil) {
+                tmp = field.score!
+                if (field.hasStar) {
+                    tmp += 50
+                }
+            }
+            
+        }
+        return tmp
     }
     
     func loadScores() {

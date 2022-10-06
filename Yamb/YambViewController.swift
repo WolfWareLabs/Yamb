@@ -51,15 +51,17 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     }()
     
     lazy var topStack: UIStackView = {
-        var stackView = UIStackView(arrangedSubviews: [button, UIView(), totalScoreLabel])
+        var stackView = UIStackView(arrangedSubviews: [NewGameButton, UIView(), totalScoreLabel])
         stackView.axis = .horizontal
-        stackView.spacing = 10
+        stackView.spacing = 20
         stackView.distribution = .fill
         stackView.alignment = .fill
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         return stackView
     }()
     
-    lazy var button: UIButton = {
+    lazy var NewGameButton: UIButton = {
        var b = UIButton()
         b.setTitle("New Game", for: .normal)
         b.backgroundColor = .systemBlue
@@ -110,6 +112,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         view.backgroundColor = .white
         view.addSubview(contentStack)
+        
         contentStack.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
@@ -118,8 +121,17 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             make.right.equalTo(view.safeAreaLayoutGuide).inset(yambPadding)
         }
         
+        let displayLink = CADisplayLink(target: self,  selector: #selector(handleUpdate))
+        displayLink.add(to: .main, forMode: .default)
+        
         //self.navigationController?.navigationBar.isHidden = true
         
+    }
+    
+    
+    
+    @objc func handleUpdate() {
+//        self.totalScoreLabel.text =
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -180,10 +192,15 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func didSelect(_ diceRolls: [DiceRoll], indexPath: IndexPath?, hasStar: Bool) {
         guard let indexPath = indexPath else { return }
+        
+        
+        
         dataSource.setScore(diceRolls: diceRolls, indexPath: indexPath, hasStar: hasStar)
         yambCollectionView.reloadData()
         totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore())"
     }
+    
+    
     
     func didClear(indexPath: IndexPath?) {
         guard let indexPath = indexPath else { return }
