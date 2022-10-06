@@ -98,12 +98,15 @@ class LoginViewController: UIViewController {
             let email = emailField.text!
             let password = passwordField.text!
             Auth.auth().signIn(withEmail: email, password: password) {authResult, error in
-                if(authResult != nil) {
-                    self.navigationController?.pushViewController(YambViewController(), animated: true)
-                }else {
+                
+                if error != nil {
                     let alert = UIAlertController(title: "Error signing in", message: "Invalid username or password", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true)
+                } else if let authResult, let email = authResult.user.email {
+                    print("email: \(email)")
+                    StorageManager.userEmail = email
+                    self.navigationController?.pushViewController(YambViewController(), animated: true)
                 }
             }
         }
