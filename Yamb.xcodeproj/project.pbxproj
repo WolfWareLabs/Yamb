@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67B3AEEC28EF1195003027A8 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B3AEEB28EF1195003027A8 /* StorageManager.swift */; };
 		AD4884E82892862600912684 /* YambSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4884E72892862600912684 /* YambSettings.swift */; };
 		AD4884EA289286A400912684 /* SettingPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4884E9289286A400912684 /* SettingPair.swift */; };
 		AD745B0E28914D71008A7C7E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD745B0D28914D71008A7C7E /* SettingsViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67B3AEEB28EF1195003027A8 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		AD4884E72892862600912684 /* YambSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YambSettings.swift; sourceTree = "<group>"; };
 		AD4884E9289286A400912684 /* SettingPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPair.swift; sourceTree = "<group>"; };
 		AD745B0D28914D71008A7C7E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				AD745B0D28914D71008A7C7E /* SettingsViewController.swift */,
 				AD4884E72892862600912684 /* YambSettings.swift */,
 				AD4884E9289286A400912684 /* SettingPair.swift */,
+				67B3AEEB28EF1195003027A8 /* StorageManager.swift */,
 			);
 			path = Yamb;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				AD4884E82892862600912684 /* YambSettings.swift in Sources */,
 				AD4884EA289286A400912684 /* SettingPair.swift in Sources */,
 				AD745B172891B932008A7C7E /* SettingSwitch.swift in Sources */,
+				67B3AEEC28EF1195003027A8 /* StorageManager.swift in Sources */,
 				DC89B5DF2869F1DD0000E096 /* CustomDiceButton.swift in Sources */,
 				DC3DBF6428743D3000873620 /* CustomErrorLabel.swift in Sources */,
 				C7FEC90F25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift in Sources */,
