@@ -38,7 +38,7 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
     lazy var clearButton: ClearDoneButton = {
         var button = ClearDoneButton()
         button.setTitle("Clear", for: .normal)
-        button.addTarget(self, action: #selector(onCancel), for: .touchUpInside)
+        button.addTarget(self, action: #selector(onClear), for: .touchUpInside)
         return button
     }()
     
@@ -135,7 +135,7 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
         field?.hasStar = sender.isSelected
     }
     
-    @objc func onCancel(_ sender: Any) {
+    @objc func onClear(_ sender: Any) {
         delegate?.didClear(indexPath: field?.indexPath)
         dismiss(animated: true) {
             self.delegate?.didDismiss()

@@ -19,7 +19,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     lazy var totalScoreLabel: UILabel = {
         var label = UILabel()
-        label.text = "Total: "
+        label.text = "Total: \(dataSource.totalScore)"
         return label
     }()
     
@@ -51,15 +51,17 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     }()
     
     lazy var topStack: UIStackView = {
-        var stackView = UIStackView(arrangedSubviews: [button, UIView(), totalScoreLabel])
+        var stackView = UIStackView(arrangedSubviews: [newGameButton, UIView(), totalScoreLabel])
         stackView.axis = .horizontal
-        stackView.spacing = 10
+        stackView.spacing = 20
         stackView.distribution = .fill
         stackView.alignment = .fill
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 20)
         return stackView
     }()
     
-    lazy var button: UIButton = {
+    lazy var newGameButton: UIButton = {
        var b = UIButton()
         b.setTitle("New Game", for: .normal)
         b.backgroundColor = .systemBlue
@@ -110,6 +112,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         view.backgroundColor = .white
         view.addSubview(contentStack)
+        
         contentStack.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
@@ -117,9 +120,6 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         yambCollectionView.snp.makeConstraints { make in
             make.right.equalTo(view.safeAreaLayoutGuide).inset(yambPadding)
         }
-        
-        //self.navigationController?.navigationBar.isHidden = true
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -180,23 +180,28 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func didSelect(_ diceRolls: [DiceRoll], indexPath: IndexPath?, hasStar: Bool) {
         guard let indexPath = indexPath else { return }
+        
+        
+        
         dataSource.setScore(diceRolls: diceRolls, indexPath: indexPath, hasStar: hasStar)
         yambCollectionView.reloadData()
-        totalScoreLabel.text = "Total: \(dataSource.totalScore)"
+        totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
     }
+    
+    
     
     func didClear(indexPath: IndexPath?) {
         guard let indexPath = indexPath else { return }
-        dataSource.clear(indexPath: indexPath)
         yambCollectionView.reloadData()
-        totalScoreLabel.text = "Total: \(dataSource.totalScore)"
+        dataSource.clear(indexPath: indexPath)
+        totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
     }
     
     @objc func onNewGame(_ sender: Any) {
         let alert = UIAlertController(title: "Are you sure you want to abandon the current game and start a new one?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
-            
+        
             self.dataSource.resetScores()
             self.yambCollectionView.reloadData()
             self.totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
@@ -207,7 +212,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func didDismiss() {
         if dataSource.isGameEnded {
-            let alert = UIAlertController(title: "GAME OVER", message: "TOTAL SCORE: \(dataSource.totalScore)", preferredStyle: .alert)
+            let alert = UIAlertController(title: "GAME OVER", message: "TOTAL SCORE: \(self.dataSource.totalScore)", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "New game", style: .default, handler: { _ in
                 self.dataSource.resetScores()
                 self.yambCollectionView.reloadData()

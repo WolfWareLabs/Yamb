@@ -80,10 +80,16 @@ class YambDataSource {
     }()
     
     var totalScore: Int {
+        get {
+            return getTotalScore()
+        }
+    }
+    
+    private func getTotalScore() -> Int {
         var sumTop = 0
         var sumMiddle = 0
         var sumBottom = 0
-
+        
         fieldsDict[0]?.filter { $0.type == .Result }.forEach {
             sumTop += $0.score ?? 0
         }
@@ -103,8 +109,9 @@ class YambDataSource {
         fieldsDict[2]?.filter { $0.type == .Yamb && $0.hasStar }.forEach {_ in
             sumTop += 50
         }
-
+        
         return sumTop + sumMiddle + sumBottom
+        
     }
     
     var isGameEnded: Bool {
@@ -149,6 +156,7 @@ class YambDataSource {
             let fields = fields.filter { $0.column == column && $0.type != .Result }
             for field in fields {
                 guard let score = field.score else { return 0 }
+                if score == 0 {return 0}
                 sum = field.row == .min ? (sum - score) : (sum + score)
             }
     
@@ -178,6 +186,20 @@ class YambDataSource {
         updateEnabledFields()
     }
     
+    func clearedScore(indexPath: IndexPath) -> Int {
+        var result = 0
+        if let field = fieldsDict[indexPath.section]?[indexPath.item] {
+            if let score = field.score {
+                result = score
+                if (field.hasStar) {
+                    result += 50
+                }
+            }
+            
+        }
+        return result
+    }
+    
     func loadScores() {
         if let fields = userDefaults.value(forKey: kScoreDictKey) as? Data,
            let decodedFields  = try? PropertyListDecoder().decode([Int: [Field]].self, from: fields) {
@@ -199,6 +221,7 @@ class YambDataSource {
     
     func clear(indexPath: IndexPath) {
         if let field = fieldsDict[indexPath.section]?[indexPath.item] {
+            setScore(diceRolls: [], indexPath: indexPath, hasStar: false)
             field.score = nil
             field.hasStar = false
             lastPlayedField = field
@@ -321,4 +344,5 @@ class Field: Equatable, Codable {
         self.indexPath = indexPath
         self.isEnabled = true
     }
+    
 }
