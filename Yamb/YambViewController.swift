@@ -19,7 +19,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     lazy var totalScoreLabel: UILabel = {
         var label = UILabel()
-        label.text = "Total: \(dataSource.getTotalScore())"
+        label.text = "Total: \(dataSource.totalScore)"
         return label
     }()
     
@@ -51,7 +51,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     }()
     
     lazy var topStack: UIStackView = {
-        var stackView = UIStackView(arrangedSubviews: [NewGameButton, UIView(), totalScoreLabel])
+        var stackView = UIStackView(arrangedSubviews: [newGameButton, UIView(), totalScoreLabel])
         stackView.axis = .horizontal
         stackView.spacing = 20
         stackView.distribution = .fill
@@ -61,7 +61,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         return stackView
     }()
     
-    lazy var NewGameButton: UIButton = {
+    lazy var newGameButton: UIButton = {
        var b = UIButton()
         b.setTitle("New Game", for: .normal)
         b.backgroundColor = .systemBlue
@@ -120,18 +120,6 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         yambCollectionView.snp.makeConstraints { make in
             make.right.equalTo(view.safeAreaLayoutGuide).inset(yambPadding)
         }
-        
-        let displayLink = CADisplayLink(target: self,  selector: #selector(handleUpdate))
-        displayLink.add(to: .main, forMode: .default)
-        
-        //self.navigationController?.navigationBar.isHidden = true
-        
-    }
-    
-    
-    
-    @objc func handleUpdate() {
-//        self.totalScoreLabel.text =
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -197,7 +185,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         dataSource.setScore(diceRolls: diceRolls, indexPath: indexPath, hasStar: hasStar)
         yambCollectionView.reloadData()
-        totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore())"
+        totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
     }
     
     
@@ -206,7 +194,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         guard let indexPath = indexPath else { return }
         yambCollectionView.reloadData()
         dataSource.clear(indexPath: indexPath)
-        totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore())"
+        totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
     }
     
     @objc func onNewGame(_ sender: Any) {
@@ -216,7 +204,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         
             self.dataSource.resetScores()
             self.yambCollectionView.reloadData()
-            self.totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore())"
+            self.totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true)
@@ -224,11 +212,11 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func didDismiss() {
         if dataSource.isGameEnded {
-            let alert = UIAlertController(title: "GAME OVER", message: "TOTAL SCORE: \(self.dataSource.getTotalScore())", preferredStyle: .alert)
+            let alert = UIAlertController(title: "GAME OVER", message: "TOTAL SCORE: \(self.dataSource.totalScore)", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "New game", style: .default, handler: { _ in
                 self.dataSource.resetScores()
                 self.yambCollectionView.reloadData()
-                self.totalScoreLabel.text = "Total: \(self.dataSource.getTotalScore())"
+                self.totalScoreLabel.text = "Total: \(self.dataSource.totalScore)"
             }))
             present(alert, animated: true)
         }

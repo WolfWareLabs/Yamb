@@ -79,13 +79,13 @@ class YambDataSource {
         return [0:topFields, 1:middleFields, 2:bottomFields]
     }()
     
-    lazy var totalScore: Int = {
-        var totalScore = Int()
-        totalScore = getTotalScore()
-        return totalScore
-    }()
+    var totalScore: Int {
+        get {
+            return getTotalScore()
+        }
+    }
     
-    func getTotalScore() -> Int {
+    private func getTotalScore() -> Int {
         var sumTop = 0
         var sumMiddle = 0
         var sumBottom = 0
@@ -187,17 +187,17 @@ class YambDataSource {
     }
     
     func clearedScore(indexPath: IndexPath) -> Int {
-        var tmp = 0
+        var result = 0
         if let field = fieldsDict[indexPath.section]?[indexPath.item] {
-            if (field.score != nil) {
-                tmp = field.score!
+            if let score = field.score {
+                result = score
                 if (field.hasStar) {
-                    tmp += 50
+                    result += 50
                 }
             }
             
         }
-        return tmp
+        return result
     }
     
     func loadScores() {
@@ -220,7 +220,7 @@ class YambDataSource {
     }
     
     func clear(indexPath: IndexPath) {
-        if let field = fieldsDict[indexPath.section]?[indexPath.row] {
+        if let field = fieldsDict[indexPath.section]?[indexPath.item] {
             setScore(diceRolls: [], indexPath: indexPath, hasStar: false)
             field.score = nil
             field.hasStar = false
