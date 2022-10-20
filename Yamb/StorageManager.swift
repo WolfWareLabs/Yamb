@@ -10,9 +10,17 @@ import Foundation
 struct StorageManager {
     
     private static let kUserEmail = "user_email_key"
+    private static let kUserName = "user_name_key"
+    private static let kUserSurname = "user_surname_key"
     
     @Storage(key: kUserEmail, defaultValue: "")
     static var userEmail: String
+    
+    @Storage(key: kUserName, defaultValue: "")
+    static var userName: String
+    
+    @Storage(key: kUserSurname, defaultValue: "")
+    static var userSurname: String
 
 }
 

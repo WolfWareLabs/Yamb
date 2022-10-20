@@ -40,6 +40,8 @@
 		DC89B5DF2869F1DD0000E096 /* CustomDiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5DE2869F1DD0000E096 /* CustomDiceButton.swift */; };
 		DC89B5E22869F2890000E096 /* Extensions+UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5E12869F2890000E096 /* Extensions+UIStackView.swift */; };
 		DC89B5E42869F69B0000E096 /* ClearDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5E32869F69B0000E096 /* ClearDoneButton.swift */; };
+		DCD830AD28F82C2C00CF5DBF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD830AC28F82C2C00CF5DBF /* ProfileViewController.swift */; };
+		DCD830B028F975BF00CF5DBF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD830AF28F975BF00CF5DBF /* UserModel.swift */; };
 		DCDE16BE280EC10100D668AF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE16BD280EC10100D668AF /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,8 @@
 		DC89B5DE2869F1DD0000E096 /* CustomDiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDiceButton.swift; sourceTree = "<group>"; };
 		DC89B5E12869F2890000E096 /* Extensions+UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIStackView.swift"; sourceTree = "<group>"; };
 		DC89B5E32869F69B0000E096 /* ClearDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDoneButton.swift; sourceTree = "<group>"; };
+		DCD830AC28F82C2C00CF5DBF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		DCD830AF28F975BF00CF5DBF /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		DCDE16BD280EC10100D668AF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +119,7 @@
 		C798F6CB259E4FB100511286 /* Yamb */ = {
 			isa = PBXGroup;
 			children = (
+				DCD830AE28F975A400CF5DBF /* Model */,
 				DC89B5E02869F2760000E096 /* Extensions */,
 				DC89B5DD2869EC380000E096 /* CustomUIElements */,
 				C798F6CC259E4FB100511286 /* AppDelegate.swift */,
@@ -138,6 +143,7 @@
 				AD4884E72892862600912684 /* YambSettings.swift */,
 				AD4884E9289286A400912684 /* SettingPair.swift */,
 				67B3AEEB28EF1195003027A8 /* StorageManager.swift */,
+				DCD830AC28F82C2C00CF5DBF /* ProfileViewController.swift */,
 			);
 			path = Yamb;
 			sourceTree = "<group>";
@@ -163,6 +169,14 @@
 				DC74CF2F28859E9B00153367 /* Extentions+UIView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DCD830AE28F975A400CF5DBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DCD830AF28F975BF00CF5DBF /* UserModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,11 +273,13 @@
 				C798F6CD259E4FB100511286 /* AppDelegate.swift in Sources */,
 				AD4884E82892862600912684 /* YambSettings.swift in Sources */,
 				AD4884EA289286A400912684 /* SettingPair.swift in Sources */,
+				DCD830AD28F82C2C00CF5DBF /* ProfileViewController.swift in Sources */,
 				AD745B172891B932008A7C7E /* SettingSwitch.swift in Sources */,
 				67B3AEEC28EF1195003027A8 /* StorageManager.swift in Sources */,
 				DC89B5DF2869F1DD0000E096 /* CustomDiceButton.swift in Sources */,
 				DC3DBF6428743D3000873620 /* CustomErrorLabel.swift in Sources */,
 				C7FEC90F25A5F69D0021BBEE /* MinMaxDiceSelectionViewController.swift in Sources */,
+				DCD830B028F975BF00CF5DBF /* UserModel.swift in Sources */,
 				DC74CF3028859E9B00153367 /* Extentions+UIView.swift in Sources */,
 				C7FEC91325A733A70021BBEE /* YambDataSource.swift in Sources */,
 				ADE85B3928912FD300714504 /* UIViewControllerPreview.swift in Sources */,
@@ -429,6 +445,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 3389RHNLVA;
 				INFOPLIST_FILE = Yamb/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -449,6 +466,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 3389RHNLVA;
 				INFOPLIST_FILE = Yamb/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

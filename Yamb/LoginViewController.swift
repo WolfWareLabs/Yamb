@@ -106,7 +106,7 @@ class LoginViewController: UIViewController {
                 } else if let authResult, let email = authResult.user.email {
                     print("email: \(email)")
                     StorageManager.userEmail = email
-                    self.navigationController?.pushViewController(YambViewController(), animated: true)
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
         }

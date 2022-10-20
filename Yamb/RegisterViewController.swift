@@ -58,12 +58,16 @@ class RegisterViewController: UIViewController {
             let email = emailField.text!
             let password = passwordField.text!
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                if(authResult != nil) {
-                    self.navigationController?.pushViewController(YambViewController(), animated: true)
-                } else {
+                if(error != nil) {
                     let alert = UIAlertController(title: "Error creating user", message: "", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true)
+                } else if let authResult = authResult, let email = authResult.user.email {
+                    print("Register email \(email)")
+                    StorageManager.userEmail = email
+                    StorageManager.userName = self.nameField.text!
+                    StorageManager.userSurname = self.surnameField.text!
+                    self.dismiss(animated: true)
                 }
             }
         }

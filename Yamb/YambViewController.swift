@@ -19,7 +19,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     lazy var totalScoreLabel: UILabel = {
         var label = UILabel()
-        label.text = "Total: "
+        label.text = "Total: \(dataSource.totalScore)"
         return label
     }()
     
@@ -118,8 +118,42 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             make.right.equalTo(view.safeAreaLayoutGuide).inset(yambPadding)
         }
         
-        //self.navigationController?.navigationBar.isHidden = true
+        setupNavigationBarItems()
         
+        if StorageManager.userEmail == "" {
+            navigationController?.pushViewController(LoginViewController(), animated: true)
+        }
+    }
+    
+    func setupNavigationBarItems() {
+        lazy var profileButton: UIButton = {
+            let button = UIButton()
+            button.setImage(UIImage(systemName: "person.circle"), for: .normal)
+            button.snp.makeConstraints { make in
+                make.height.equalTo(50)
+                make.width.equalTo(50)
+            }
+            if StorageManager.userEmail == "" {
+                button.isHidden = true
+            }
+            button.addTarget(self, action: #selector(profileButtonClicked), for: .touchUpInside)
+            return button
+        }()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: profileButton)
+        navigationItem.setHidesBackButton(true, animated: true)
+    }
+    
+    @objc func profileButtonClicked() {
+        let profileVC = ProfileViewController()
+        profileVC.delegate = self
+        let nav = UINavigationController(rootViewController: profileVC)
+        nav.modalPresentationStyle = .formSheet
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersGrabberVisible = true
+        }
+        navigationController?.present(nav, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -215,5 +249,11 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
             }))
             present(alert, animated: true)
         }
+    }
+}
+
+extension YambViewController: LogOutDelegate {
+    func userDidLogOut() {
+        navigationController?.pushViewController(LoginViewController(), animated: true)
     }
 }
