@@ -86,6 +86,7 @@ class LoginViewController: UIViewController {
             make.bottom.left.right.equalTo(view.safeAreaLayoutGuide).inset(20)
             
         }
+        self.navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
     }
     
@@ -106,6 +107,7 @@ class LoginViewController: UIViewController {
                 } else if let authResult, let email = authResult.user.email {
                     print("email: \(email)")
                     StorageManager.userEmail = email
+                    self.navigationController?.popViewController(animated: true)
                     self.navigationController?.popViewController(animated: true)
                 }
             }

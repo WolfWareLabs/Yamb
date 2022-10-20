@@ -67,7 +67,7 @@ class RegisterViewController: UIViewController {
                     StorageManager.userEmail = email
                     StorageManager.userName = self.nameField.text!
                     StorageManager.userSurname = self.surnameField.text!
-                    self.dismiss(animated: true)
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             }
         }
@@ -81,6 +81,7 @@ class RegisterViewController: UIViewController {
             make.bottom.left.right.equalTo(view.safeAreaLayoutGuide).inset(20)
             
         }
+        self.navigationItem.setHidesBackButton(true, animated: true)
         view.backgroundColor = .white
     }
     
