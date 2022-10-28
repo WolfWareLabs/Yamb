@@ -55,15 +55,20 @@ class RegisterViewController: UIViewController {
             self.passwordsDontMatchLabel.shake()
         }
         else {
-            let email = emailField.text!
-            let password = passwordField.text!
+            let email = emailField.text ?? ""
+            let password = passwordField.text ?? ""
+            let name = nameField.text ?? ""
+            let surname = surnameField.text ?? ""
+            
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                if(authResult != nil) {
-                    self.navigationController?.pushViewController(YambViewController(), animated: true)
-                } else {
+                if(error != nil) {
                     let alert = UIAlertController(title: "Error creating user", message: "", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true)
+                } else if let authResult = authResult, let email = authResult.user.email {
+                    let user = UserModel(email: email, name: name, surname: surname, profilePicture: nil)
+                    StorageManager.user = user
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             }
         }

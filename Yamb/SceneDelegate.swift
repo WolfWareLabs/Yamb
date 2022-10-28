@@ -14,12 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let isUserLoggedIn = StorageManager.userEmail != ""
-        if isUserLoggedIn {
-            window.rootViewController = UINavigationController(rootViewController: YambViewController())
-        } else {
-            window.rootViewController = UINavigationController(rootViewController: LoginViewController())
-        }
+        window.rootViewController = UINavigationController(rootViewController: YambViewController())
         window.makeKeyAndVisible()
         self.window = window
     }

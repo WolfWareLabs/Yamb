@@ -25,10 +25,6 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
         flowLayout.minimumInteritemSpacing = 10
         flowLayout.minimumLineSpacing = 10
         flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width - 40, height: 60)
-        collectionView.snp.makeConstraints { make in
-            make.height.equalTo(450)
-            make.width.equalTo(400)
-        }
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -52,12 +48,14 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
     lazy var addStarSwitch: UISwitch = {
        var addStarSwitch = UISwitch()
         addStarSwitch.addTarget(self, action: #selector(onAddStarValueChanged), for: .valueChanged)
+        addStarSwitch.isHidden = true
         return addStarSwitch
     }()
     
     lazy var addStarLabel: UILabel = {
         var label = UILabel()
         label.text = "Add star"
+        label.isHidden = true
         return label
     }()
     
@@ -87,9 +85,13 @@ class TopBottomDiceSelectionViewController: UIViewController, UICollectionViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mainStackView)
+        collectionView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().inset(150)
+        }
         mainStackView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(50)
-            make.bottom.left.right.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.bottom.left.right.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
         view.backgroundColor = .white
     }
