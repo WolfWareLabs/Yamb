@@ -42,6 +42,7 @@
 		DC89B5E42869F69B0000E096 /* ClearDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89B5E32869F69B0000E096 /* ClearDoneButton.swift */; };
 		DCD830AD28F82C2C00CF5DBF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD830AC28F82C2C00CF5DBF /* ProfileViewController.swift */; };
 		DCD830B028F975BF00CF5DBF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD830AF28F975BF00CF5DBF /* UserModel.swift */; };
+		DCD830B22909ACD700CF5DBF /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD830B12909ACD700CF5DBF /* Image.swift */; };
 		DCDE16BE280EC10100D668AF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE16BD280EC10100D668AF /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		DC89B5E32869F69B0000E096 /* ClearDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearDoneButton.swift; sourceTree = "<group>"; };
 		DCD830AC28F82C2C00CF5DBF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		DCD830AF28F975BF00CF5DBF /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		DCD830B12909ACD700CF5DBF /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		DCDE16BD280EC10100D668AF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				DCD830AF28F975BF00CF5DBF /* UserModel.swift */,
+				DCD830B12909ACD700CF5DBF /* Image.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				C7FEC91325A733A70021BBEE /* YambDataSource.swift in Sources */,
 				ADE85B3928912FD300714504 /* UIViewControllerPreview.swift in Sources */,
 				C798F6E325A4B94200511286 /* YambCell.swift in Sources */,
+				DCD830B22909ACD700CF5DBF /* Image.swift in Sources */,
 				C798F6CF259E4FB100511286 /* SceneDelegate.swift in Sources */,
 				C798F6E625A4BC8800511286 /* CellEnums.swift in Sources */,
 				DC3DBF5E286F23C700873620 /* RegisterViewController.swift in Sources */,

@@ -15,6 +15,7 @@ protocol LogOutDelegate: AnyObject {
 class ProfileViewController: UIViewController {
     
     weak var delegate: LogOutDelegate?
+    var user = StorageManager.user
     
     lazy var profilePicture: UIImageView = {
         var imageView = UIImageView()
@@ -28,13 +29,13 @@ class ProfileViewController: UIViewController {
     
     lazy var nameAndSurnameLabel: UILabel = {
         var label = UILabel()
-        label.text = "\(StorageManager.userName) \(StorageManager.userSurname)"
+        label.text = "\(user?.name ?? "") \(user?.surname ?? "")"
         return label
     }()
     
     lazy var usernameLabel: UILabel = {
         var label = UILabel()
-        label.text = "Email: \(StorageManager.userEmail)"
+        label.text = "Email: \(user?.email ?? "")"
         return label
     }()
     
@@ -61,7 +62,7 @@ class ProfileViewController: UIViewController {
         let auth = Auth.auth()
         do {
             try auth.signOut()
-            StorageManager.userEmail = ""
+            StorageManager.user = UserModel(email: "", name: "", surname: "", profilePicture: nil)
             self.dismiss(animated: true)
             delegate?.userDidLogOut()
         } catch let error {

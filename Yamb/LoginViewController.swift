@@ -105,8 +105,7 @@ class LoginViewController: UIViewController {
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true)
                 } else if let authResult, let email = authResult.user.email {
-                    print("email: \(email)")
-                    StorageManager.userEmail = email
+                    StorageManager.user?.email = email
                     self.navigationController?.popViewController(animated: true)
                     self.navigationController?.popViewController(animated: true)
                 }

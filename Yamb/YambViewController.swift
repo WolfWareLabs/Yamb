@@ -120,7 +120,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         setupNavigationBarItems()
         
-        if StorageManager.userEmail == "" {
+        if StorageManager.user?.email == "" {
             navigationController?.pushViewController(LoginViewController(), animated: true)
         }
     }
@@ -133,7 +133,7 @@ class YambViewController: UIViewController, UICollectionViewDataSource, UICollec
                 make.height.equalTo(50)
                 make.width.equalTo(50)
             }
-            if StorageManager.userEmail == "" {
+            if StorageManager.user?.email == "" {
                 button.isHidden = true
             }
             button.addTarget(self, action: #selector(profileButtonClicked), for: .touchUpInside)
